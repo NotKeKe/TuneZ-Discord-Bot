@@ -6,11 +6,11 @@ import aiofiles
 import logging
 from typing import Optional
 
-from .config import EMOJI_PATH
-from .utils import get_bot
+from .config import EMOJI_PATH, resource_path
 
 logger = logging.getLogger(__name__)
 AVAILABLE_SUFFIX_EMOJIS = ('.png', '.gif', '.jpg', '.jpeg')
+DEFAULT_EMOJI_PATH = resource_path('assets/emojis')
 
 EMOJIS = []
 
@@ -39,7 +39,7 @@ async def create_emojis(bot: commands.Bot):
         loaded_emoji_counts += 1
 
     # 如果遇到重複的就會被跳過
-    for path in (Path(__file__).parent.parent / 'assets' / 'emojis').iterdir():
+    for path in Path(DEFAULT_EMOJI_PATH).iterdir():
         if not path.suffix in AVAILABLE_SUFFIX_EMOJIS: continue
         name = path.stem
 
@@ -85,7 +85,7 @@ async def update_default_emojis(bot: commands.Bot):
     global EMOJIS
     await bot.wait_until_ready()
 
-    for path in (Path(__file__).parent.parent / 'assets' / 'emojis').iterdir():
+    for path in Path(DEFAULT_EMOJI_PATH).iterdir():
         if not path.suffix in AVAILABLE_SUFFIX_EMOJIS: continue
         name = path.stem
 
