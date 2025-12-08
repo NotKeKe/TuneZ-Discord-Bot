@@ -99,9 +99,6 @@
         "send_button_player_crashed": "YinXi seems to have crashed unexpectedly :thinking:",
         "send_button_stopped_music": "( {user} ) has stopped the music and left {channel_mention} ~",
         "send_button_loop_changed": "Loop status has been changed to `{loop_status}`",
-        "send_button_recommend_not_enabled": "You haven't enabled music recommendations, please use `/music_recommendation` to enable this feature!",
-        "send_button_no_recommendations": "There are no recommended songs for you at the moment.",
-        "embed_button_recommend_title": "Song Recommendation",
         "send_check_bot_not_in_voice": "I'm not in any voice channel right now",
         "embed_player_queue": [{
             "title": "Playlist",
@@ -112,7 +109,7 @@
             ]
         }],
         "send_player_not_found_song": "Could not find song #{index}",
-        "send_player_play_error": "Playback failed, possibly because you've been playing for too long, causing the audio link to expire, or for other reasons. It is recommended to use `/remove` to delete the song and then add it again.\n(Reason: {e})\n(If you are unsure of the reason, you can use `/report` to report it.)",
+        "send_player_play_error": "Playback failed, possibly because you've been playing for too long, causing the audio link to expire, or for other reasons. It is recommended to use `/remove` to delete the song and then add it again.\n(Reason: {e})",
         "send_player_already_paused": "The music is already paused :thinking:",
         "send_player_not_playing": "There is no music playing right now",
         "send_player_paused_success": "I've paused the music for you",
@@ -126,7 +123,7 @@
         "send_add_to_custom_list_success": "Successfully added song to custom playlist `({list_name})`.",
         "send_delete_custom_list_success": "Successfully deleted custom playlist `({list_name})`.",
         "send_delete_custom_list_cancelled": "Deletion of custom playlist `({list_name})` has been cancelled.",
-        "send_play_custom_list_already_playing_left_first": "You must leave first before you can play your custom playlist.",
+        "send_play_custom_list_already_playing_left_first": "You should let me leave this channel so I can play your custom playlist.",
         "send_play_not_in_guild": "You must be in a guild to play music.",
         "button_previous": "Previous",
         "button_pause": "Pause",
