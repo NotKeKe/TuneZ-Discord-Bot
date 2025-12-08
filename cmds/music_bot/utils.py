@@ -106,7 +106,7 @@ async def check_audio_url_alive(audio_url: str) -> bool:
 
 def query_search(query: str) -> Optional[tuple]:
     '''return (title, video_url, length: str)'''
-    search = Search(query)
+    search = Search(query, 'WEB')
     videos = search.videos
     if videos:
         video = videos[0]

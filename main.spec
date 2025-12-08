@@ -1,5 +1,6 @@
 # -*- mode: python ; coding: utf-8 -*-
 from pathlib import Path
+import os
 from PyInstaller.utils.hooks import collect_data_files
 
 def get_hidden_imports() -> list:
@@ -29,6 +30,8 @@ a = Analysis(
         ('assets', 'assets'), 
         ('core/locales', 'core/locales'),
         ('.env.example', '.env.example'),
+        ('.venv/Lib/site-packages/pytubefix/botGuard/vm/botGuard.js', 'pytubefix/botGuard/vm'),
+        ('.venv/Lib/site-packages/nodejs_wheel/node.exe', 'nodejs_wheel') if os.name == 'nt' else ('.venv/Lib/site-packages/nodejs_wheel/bin', 'nodejs_wheel/bin'),
     ] + collect_data_files('fakeredis'),
     hiddenimports=get_hidden_imports(),
     hookspath=[],
@@ -46,7 +49,7 @@ exe = EXE(
     a.binaries,
     a.datas,
     [],
-    name='main',
+    name='windows',
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
