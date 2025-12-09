@@ -3,39 +3,6 @@ revision = 3
 requires-python = ">=3.13"
 
 [[package]]
-name = "20251206-music-bot"
-version = "0.1.0"
-source = { virtual = "." }
-dependencies = [
-    { name = "aiofiles" },
-    { name = "discord-py", extra = ["voice"] },
-    { name = "fakeredis" },
-    { name = "httpx" },
-    { name = "montydb" },
-    { name = "orjson" },
-    { name = "python-dotenv" },
-    { name = "pytubefix" },
-    { name = "scrapetube" },
-    { name = "tenacity" },
-    { name = "yt-dlp" },
-]
-
-[package.metadata]
-requires-dist = [
-    { name = "aiofiles", specifier = ">=25.1.0" },
-    { name = "discord-py", extras = ["voice"], specifier = ">=2.6.4" },
-    { name = "fakeredis", specifier = ">=2.32.1" },
-    { name = "httpx", specifier = ">=0.28.1" },
-    { name = "montydb", specifier = ">=2.5.6" },
-    { name = "orjson", specifier = ">=3.11.4" },
-    { name = "python-dotenv", specifier = ">=1.2.1" },
-    { name = "pytubefix", specifier = ">=10.3.5" },
-    { name = "scrapetube", specifier = ">=2.6.0" },
-    { name = "tenacity", specifier = ">=9.1.2" },
-    { name = "yt-dlp", specifier = ">=2025.11.12" },
-]
-
-[[package]]
 name = "aiofiles"
 version = "25.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -774,6 +741,39 @@ wheels = [
 ]
 
 [[package]]
+name = "tunez"
+version = "0.1.0"
+source = { virtual = "." }
+dependencies = [
+    { name = "aiofiles" },
+    { name = "discord-py", extra = ["voice"] },
+    { name = "fakeredis" },
+    { name = "httpx" },
+    { name = "montydb" },
+    { name = "orjson" },
+    { name = "python-dotenv" },
+    { name = "pytubefix" },
+    { name = "scrapetube" },
+    { name = "tenacity" },
+    { name = "yt-dlp" },
+]
+
+[package.metadata]
+requires-dist = [
+    { name = "aiofiles", specifier = ">=25.1.0" },
+    { name = "discord-py", extras = ["voice"], specifier = ">=2.6.4" },
+    { name = "fakeredis", specifier = ">=2.32.1" },
+    { name = "httpx", specifier = ">=0.28.1" },
+    { name = "montydb", specifier = ">=2.5.6" },
+    { name = "orjson", specifier = ">=3.11.4" },
+    { name = "python-dotenv", specifier = ">=1.2.1" },
+    { name = "pytubefix", specifier = ">=10.3.5" },
+    { name = "scrapetube", specifier = ">=2.6.0" },
+    { name = "tenacity", specifier = ">=9.1.2" },
+    { name = "yt-dlp", specifier = ">=2025.12.8" },
+]
+
+[[package]]
 name = "typing-extensions"
 version = "4.15.0"
 source = { registry = "https://pypi.org/simple" }
@@ -871,9 +871,9 @@ wheels = [
 
 [[package]]
 name = "yt-dlp"
-version = "2025.11.12"
+version = "2025.12.8"
 source = { registry = "https://pypi.org/simple" }
-sdist = { url = "https://files.pythonhosted.org/packages/cf/41/53ad8c6e74d6627bd598dfbb8ad7c19d5405e438210ad0bbaf1b288387e7/yt_dlp-2025.11.12.tar.gz", hash = "sha256:5f0795a6b8fc57a5c23332d67d6c6acf819a0b46b91a6324bae29414fa97f052", size = 3076928, upload-time = "2025-11-12T01:00:38.43Z" }
+sdist = { url = "https://files.pythonhosted.org/packages/14/77/db924ebbd99d0b2b571c184cb08ed232cf4906c6f9b76eed763cd2c84170/yt_dlp-2025.12.8.tar.gz", hash = "sha256:b773c81bb6b71cb2c111cfb859f453c7a71cf2ef44eff234ff155877184c3e4f", size = 3088947, upload-time = "2025-12-08T00:16:01.649Z" }
 wheels = [
-    { url = "https://files.pythonhosted.org/packages/5f/16/fdebbee6473473a1c0576bd165a50e4a70762484d638c1d59fa9074e175b/yt_dlp-2025.11.12-py3-none-any.whl", hash = "sha256:b47af37bbb16b08efebb36825a280ea25a507c051f93bf413a6e4a0e586c6e79", size = 3279151, upload-time = "2025-11-12T01:00:35.813Z" },
+    { url = "https://files.pythonhosted.org/packages/6e/2f/98c3596ad923f8efd32c90dca62e241e8ad9efcebf20831173c357042ba0/yt_dlp-2025.12.8-py3-none-any.whl", hash = "sha256:36e2584342e409cfbfa0b5e61448a1c5189e345cf4564294456ee509e7d3e065", size = 3291464, upload-time = "2025-12-08T00:15:58.556Z" },
 ]

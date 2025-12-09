@@ -6,6 +6,7 @@ import logging
 import copy
 from typing import Optional
 from datetime import datetime
+import platform
 
 from cmds.music_bot import utils
 from cmds.music_bot.autocomplete import *
@@ -21,16 +22,14 @@ from core.config import resource_path
 logger = logging.getLogger(__name__)
 
 # load opus
-if not discord.opus.is_loaded():
-    import platform
+if not discord.opus.is_loaded() and platform.system() == 'Windows':
     if platform.architecture()[0] == '64bit':
         discord.opus.load_opus(resource_path('assets/opus/opus_x64.dll'))
     elif platform.architecture()[0] == '32bit':
         discord.opus.load_opus(resource_path('assets/opus/opus_x86.dll'))
 
-# if still not load opus
 if not discord.opus.is_loaded():
-    raise Exception('Failed to load opus')
+    raise discord.opus.OpusNotLoaded('Opus is not loaded, please install opus.')
 
 class Music(commands.Cog):
     def __init__(self, bot: commands.Bot):

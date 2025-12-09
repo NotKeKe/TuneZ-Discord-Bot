@@ -1,6 +1,7 @@
 ## 註冊 Discord Bot
 如果你還沒有 discord 帳號的話 先去註冊一個 ~~這應該不用教吧~~
 
+### 註冊
 1. 進入 [Discord Developer Application](https://discord.com/developers/applications) 的網頁
 ![Application Site](./assets/application_site.png)
 2. 點右上角的 New Application
@@ -8,6 +9,8 @@
     - 點擊 By clicking...... ~~( 翻譯: 如果你點擊 create(創建)，就代表你同意 Discord 的 [開發者服務條款(Developer Terms of Service)](https://support-dev.discord.com/hc/articles/8562894815383-Discord-Developer-Terms-of-Service) 和 [開發者政策(Developer Policy)](https://support-dev.discord.com/hc/articles/8563934450327-Discord-Developer-Policy) )~~
     - 點擊 Create(創建)
 ![New Applicaiotn](./assets/new_application.png)
+
+### 開啟權限
 3. 創建之後，應該會進到這樣的頁面。點擊左邊 Settings 那欄的 Bot，接著要給 bot intents 才能讓他正常運作
 ![Created Application](./assets/created_application.png)
 4. 點擊後，往下滑，把這三個選項都打勾
@@ -27,6 +30,8 @@
         - Use Slash Commands (使用斜線指令，我也不確定這用不用得到)
         - View Channels (查看頻道)
 ![Set Installation - Bot](./assets/installation_bot.png)
+
+### 取得 Token、邀請連結
 6. 接著要取得 Token，這個超重要，沒有它 你的 Bot 永遠都不會啟動
     - (1) 進到左邊 Settings 那欄的 Bot    
     - (2) 點擊 Reset Token
@@ -35,5 +40,7 @@
     - 點擊後 他可能會需要你驗證一下，可能要你輸入密碼。或者如果你開啟多步驟驗證(Multi-Factor)的話，可能也需要。
 ![Reset Token](./assets/reset_token.png)
 7. 結束之後，應該就可以看到你的 Token 了，複製它 (點 Copy，或者你想手動複製都可以)
+    - **把這個 Token 留著，不要給別人，等等開啟 Discord Bot 的時候會用到!**
 ![Get Token](./assets/copy_token.png)
-8. **把這個 Token 留著，不要給別人，等等開啟 Discord Bot 的時候會用到!**
+8. 取得 Bot 邀請連結
+![Get Invite URL](./assets/get_invite_url.png)

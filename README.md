@@ -1,8 +1,3 @@
-# Document Editing, do not use
-- 
-- 
-- 
-
 <p align="center">
   <img src="assets/icon.png" width = "200" height = "200"/>
 </p>
@@ -68,31 +63,61 @@
 2. 自架 ~~(既然你都點進這個專案了 應該也會選擇這個吧)~~ <br>
     **❗如果你還沒有 discord bot，先前往[這個檔案](assets/docs//Register_Discord_Bot.md)去看教學❗**
 
-    1. Windows
-        <details>
-            <summary>使用 .exe</summary>
-            <ul>
-                <li>
-                    前往 <a href="https://github.com/NotKeKe/easy-discord-music-bot/releases">Release</a>，下載適合你的版本 (現在應該只有 .exe)
-                </li>
-                <li>
-                    執行他之後，正常來說會先被關閉，因為他只是要複製必要資源出去。
-                </li>
-                <li>
-                    前往 Roaming 目錄，通常應該會是這樣的格式 (把 USERNAME 改成你自己的 應該就可以找到)
-                    <code>C:\Users\USERNAME\AppData\Roaming\Easy Music Bot</code>
-                </li>
-                <li>
-                    找到 .env，並使用任何你喜歡的文字編輯器打開
-                </li>
-                <li>
-                    把你剛剛在 Discord Developer 網站裡面創建的 Bot 的 Token 貼到 DISCORD_TOKEN，結果應該像這樣
-                    <pre><code class="lang-text"><span class="hljs-attr">DISCORD_TOKEN</span> = MTQ0Nz.....<br><span class="hljs-attr">OWNER_ID</span> = OWNER_ID</code></pre>
-                </li>
-                <li>
-                    
-                </li>
-            </ul>
-        </details>
-    2. Linux
-        - 尚未測試
+-  Windows
+    <details>
+        <summary>使用 .exe</summary>
+        <ul>
+            <li>
+                前往 <a href="https://github.com/NotKeKe/easy-discord-music-bot/releases">Release</a>，下載適合你的版本 (現在應該只有 .exe)
+            </li>
+            <li>
+                執行 <code>windows.exe</code> 之後，正常來說會先被關閉，因為他只是要複製必要資源出去。
+            </li>
+            <li>
+                前往 Roaming 目錄，通常應該會是這樣的格式 (把 USERNAME 改成你自己的 應該就可以找到)
+                <small><code>C:\Users\USERNAME\AppData\Roaming\Easy Music Bot</code></small>
+            </li>
+            <li>
+                找到 <code>.env</code>，並使用任何你喜歡的文字編輯器打開
+            </li>
+            <li>
+                把你剛剛在 Discord Developer 網站裡面創建的 Bot 的 Token 貼到 DISCORD_TOKEN，結果應該像這樣
+                <pre><code class="lang-text"><span class="hljs-attr">DISCORD_TOKEN</span> = MTQ0Nz.....<br><span class="hljs-attr">OWNER_ID</span> = OWNER_ID</code></pre>
+                <small>(OWNER_ID 就是你自己的 Discord ID，每個使用者的都不一樣，像我的就是 70387787125.....，就算不填也沒關係，目前只有在需要 reload_emojis 的時候才會用到)</small>
+            </li>
+            <li>
+                重新開啟 <code>windows.exe</code>
+            </li>
+            <li>
+                現在 你應該可以看到他正常啟動了<br>
+                <strong>用 /play 來開始播放音樂吧</strong>
+                <img src="assets/docs/opened_bot.png">
+            </li>
+        </ul>
+    </details>
+- [Docker](https://www.docker.com/)
+    <details>
+        <summary>Docker Compose</summary>
+        <ul>
+            <li>
+                將 <code>.env.example</code> 重命名為 <code>.env</code>
+                <pre><code class="lang-bash"><span class="hljs-selector-tag">cp</span> <span class="hljs-selector-class">.env</span><span class="hljs-selector-class">.example</span> <span class="hljs-selector-class">.env</span></code></pre>
+            </li>
+            <li>
+                填入你自己的 Discord Bot Token <br>
+                大概像這樣
+                <pre><code class="lang-env"><span class="hljs-attr">DISCORD_TOKEN</span> = MTQ0Nz.....<br><span class="hljs-attr">OWNER_ID</span> = OWNER_ID</code></pre>
+                <small>(OWNER_ID 就是你自己的 Discord ID，每個使用者的都不一樣，像我的就是 70387787125.....，就算不填也沒關係，目前只有在需要 reload_emojis 的時候才會用到)</small>
+            </li>
+            <li>
+                創建 logs 和 data 目錄 <br>
+                (logs 主要用於查看錯誤，data 用於儲存使用者自訂播放清單、url 暫存等等......)
+                <pre><code class="lang-bash"><span class="hljs-title">mkdir</span> -p <span class="hljs-class"><span class="hljs-keyword">data</span> logs</span></code></pre>
+            </li>
+            <li>
+                使用 docker compose 啟動
+                <pre><code class="lang-bash">docker compose up <span class="hljs-_">-d</span></code></pre>
+            </li>
+        </ul>
+        <strong>Bot 應該就會成功開起來了!</strong>
+    </details>

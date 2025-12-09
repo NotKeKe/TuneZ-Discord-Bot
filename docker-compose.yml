@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  bot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uv run main.py
+    container_name: TuneZ
+    env_file: .env
+    volumes:
+      - ./data:/app/data
+      - ./logs:/app/logs
+    deploy:
+      resources:
+        limits:
+          memory: 1.5G
+    restart: unless-stopped

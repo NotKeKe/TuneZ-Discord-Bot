@@ -4,6 +4,7 @@ from discord import PCMVolumeTransformer
 import asyncio
 import traceback
 from typing import Literal, Optional
+import platform
 
 from . import utils
 from .utils import players
@@ -191,7 +192,11 @@ class Player:
             # 播放新音訊
             self.gener_progress_bar()
             self.update_progress_bar_task = self.bot.loop.create_task(self.update_passed_time()) # type: ignore
-            self.source = discord.FFmpegPCMAudio(audio_url, executable=FFMPEG_PATH, **utils.ffmpeg_options) # type: ignore
+            self.source = discord.FFmpegPCMAudio(
+                audio_url, 
+                **({'executable': FFMPEG_PATH} if platform.system() == 'Windows' else {}), # type: ignore
+                **utils.ffmpeg_options # type: ignore
+            )
             self.transformer = PCMVolumeTransformer(self.source, self.volume)
             if self.voice_client.is_playing(): # type: ignore
                 self.voice_client.stop() # type: ignore

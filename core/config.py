@@ -3,6 +3,7 @@ import sys
 from dotenv import load_dotenv
 import shutil
 import os
+import platform
 
 MY_APP_NAME = "Easy Music Bot"
 
@@ -11,9 +12,9 @@ def get_app_data_path() -> Path:
     home = Path.home()
     # 在 Windows 上會是 C:\Users\<user>\AppData\Roaming\MyApp
     # 在 Linux 上會是 /home/<user>/.config/MyApp
-    if sys.platform == "win32":
+    if platform.system() == "Windows":
         path = home / "AppData" / "Roaming" / MY_APP_NAME
-    elif sys.platform == "linux":
+    elif platform.system() == "Linux":
         path = home / ".config" / MY_APP_NAME
     else: # macOS
         path = home / "Library" / "Application Support" / MY_APP_NAME
@@ -27,7 +28,10 @@ def resource_path(relative_path):
         return os.path.join(sys._MEIPASS, relative_path) # type: ignore
     return os.path.join(os.path.abspath("."), relative_path)
 
-APP_DATA_PATH = get_app_data_path()
+if platform.system() == "Windows":
+    APP_DATA_PATH = get_app_data_path()
+else:
+    APP_DATA_PATH = Path(__file__).parent.parent
 
 # get env
 ENV_PATH = APP_DATA_PATH / ".env"
