@@ -17,7 +17,8 @@
         "play_custom_list": "播放自订播放清单",
         "add_custom_list": "加入自订播放清单",
         "delete_custom_list": "删除自订播放清单",
-        "show_custom_list": "列出自订播放清单的歌曲"
+        "show_custom_list": "列出自订播放清单的歌曲",
+        "help": "指令帮助"
     },
     "description": {
         "play": "播放音乐",
@@ -132,6 +133,10 @@
         "button_loop": "切换循环",
         "button_list": "清单",
         "button_refresh": "刷新",
-        "button_volume": "音量"
+        "button_volume": "音量",
+        "embed_help": [{
+            "description": "## 📢 指令调用方式\n- 使用 TuneZ 的前缀: `$` 来调用指令\n- 使用 Discord 内建的斜杠命令 (`/`)\n## 📜 指令列表\n说明格式如下:  \n`/指令名称 [参数]` (其他调用指令的方法) ─ 变量名称+说明 ─ 指令功能\n### 🎵 音乐播放\n- `/播放 [query]` ($play, $p) ─ query: 链接或关键字 ─ 歌曲正在播放时，也可以使用 /播放 而不用 /新增\n- `/新增 [query]` ($add) ─ query: 链接或关键字\n- `/跳过` ($skip, $s) ─ 跳过歌曲\n- `/上一首` ($back) ─ 跳回上一首歌\n- `/暂停` ($pause, $ps) ─ 暂停歌曲\n- `/继续` ($resume, $rs) ─ 继续播放歌曲\n- `/停止播放并离开频道` ($stop)\n- `/循环 [loop_type]` ($loop) ─ loop_type: 循环状态，可为 None、single、list (不循环、单曲循环、播放列表循环) ─ 设置循环播放模式\n- `/正在播放` ($nowplaying, $np, $now) ─ 显示正在播放的歌曲\n- `/播放列表` ($queue) ─ 显示当前播放列表\n- `/移除播放列表中的歌曲 [number]` ($remove, $rm) ─ number: 第几首歌\n- `/清除播放列表` ($clear, $cq) ─ 清除播放列表中的所有歌曲，输入指令后需点击 ✅ 才会删除\n- `/离开` ($leave) ─ 等同于 `/停止播放并离开频道`\n- `/调整音量 [volume]` ($volume) ─ volume: 可填可不填，不填的话可以用按钮调节音量\n### 📝 自定义播放列表\n- `/播放自定义播放列表 [list_name]` ($play_custom_list) ─ list_name: 播放列表名称，未设置过则为空\n- `/加入自定义播放列表 [url] [list_name]` ($add_custom_list) ─ url: 要加入播放列表的歌曲链接。 list_name: 播放列表名称，如果要新建播放列表，直接输入名字即可。 ─ 将歌曲加入播放列表\n- `/删除自定义播放列表 [list_name]` ($delete_custom_list, $del_custom_list) ─ list_name: 要删除的播放列表名称\n- `/列出自定义播放列表的歌曲 [list_name]` ($show_custom_list) ─ 显示单一播放列表的歌曲列表\n### 🛠️ 表情符号管理\n- `/emoji [name]` ($emoji) ─ name: emoji 的名称，例如: next, stop, refresh ─ 显示 TuneZ 内建的表情符号\n- `/reload_emoji [type]` ($reload_emoji) ─ type: all, default, custom，分别表示重载 全部、默认(TuneZ 默认)、自定义表情符号\n    - 有关自定义表情符号，请详阅[该文档](https://github.com/NotKeKe/TuneZ-Discord-Bot)的**特色**部分",
+            "author": "指令帮助"
+        }]
     }
 }

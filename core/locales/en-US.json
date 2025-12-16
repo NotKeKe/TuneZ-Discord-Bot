@@ -17,7 +17,8 @@
         "play_custom_list": "play_custom_list",
         "add_custom_list": "add_custom_list",
         "delete_custom_list": "delete_custom_list",
-        "show_custom_list": "show_custom_list"
+        "show_custom_list": "show_custom_list",
+        "help": "help"
     },
     "description": {
         "play": "Play music",
@@ -132,6 +133,10 @@
         "button_loop": "Loop",
         "button_list": "Playlist",
         "button_refresh": "Refresh",
-        "button_volume": "Volume"
+        "button_volume": "Volume",
+        "embed_help": [{
+            "description": "## 📢 Command Invocation\n- Use TuneZ prefix: `$` to call commands\n- Use Discord’s built-in slash command (`/`)\n## 📜 Commands\nThe format is explained as follows:  \n`/command_name [parameter]` (other ways to invoke the command) ─ variable name + description ─ function of the command\n### 🎵 Music Playback\n- `/play [query]` ($play, $p) ─ query: link or keyword ─ When a song is already playing, you can use /play instead of /add\n- `/add [query]` ($add) ─ query: link or keyword\n- `/skip` ($skip, $s) ─ Skip the current song\n- `/back` ($back) ─ Go back to the previous song\n- `/pause` ($pause, $ps) ─ Pause the song\n- `/resume` ($resume, $rs) ─ Resume playback\n- `/stop` ($stop) ─ Stop playback and leave the channel\n- `/loop [loop_type]` ($loop) ─ loop_type: loop mode, can be None, single, list (no loop, single loop, playlist loop) ─ Set loop playback mode\n- `/nowplaying` ($nowplaying, $np, $now) ─ Show the currently playing song\n- `/queue` ($queue) ─ Show the current playlist\n- `/remove [number]` ($remove, $rm) ─ number: the position of the song in the playlist\n- `/clear` ($clear, $cq) ─ Clear all songs in the playlist, requires clicking ✅ after entering the command\n- `/leave` ($leave) ─ Equivalent to `/stop`\n- `/volume [volume]` ($volume) ─ volume: optional, if not provided you can adjust via buttons\n### 📝 Custom Playlists\n- `/play_custom_list [list_name]` ($play_custom_list) ─ list_name: playlist name, empty if not set\n- `/add_custom_list [url] [list_name]` ($add_custom_list) ─ url: link of the song to add. list_name: playlist name, if creating a new playlist just type the name directly. ─ Add a song to the playlist\n- `/delete_custom_list [list_name]` ($delete_custom_list, $del_custom_list) ─ list_name: name of the playlist to delete\n- `/show_custom_list [list_name]` ($show_custom_list) ─ Show the songs in a single playlist\n### 🛠️ Emoji Management\n- `/emoji [name]` ($emoji) ─ name: name of the emoji, e.g., next, stop, refresh ─ Show TuneZ built-in emojis\n- `/reload_emoji [type]` ($reload_emoji) ─ type: all, default, custom, representing reload all, default (TuneZ default), or custom emojis\n    - For custom emojis, please refer to the **Features** section of [this document](https://github.com/NotKeKe/TuneZ-Discord-Bot)",
+            "author": "Command Help"
+        }]
     }
 }

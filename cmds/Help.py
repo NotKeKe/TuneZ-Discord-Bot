@@ -2,9 +2,10 @@ from discord.ext import commands
 import logging
 from typing import Literal
 
-from core.translator import locale_str
+from core.translator import locale_str, get_translate, load_translated
 from core.emojis import get_emoji, update_custom_emojis, update_default_emojis
 from core.config import OWNER_ID
+from core.utils import create_basic_embed
 
 logger = logging.getLogger(__name__)
 
@@ -17,7 +18,15 @@ class Help(commands.Cog):
 
     @commands.hybrid_command(name=locale_str('help'), description=locale_str('help'))
     async def help(self, ctx: commands.Context):
-        await ctx.send('Under development...')
+        '''i18n'''
+        eb_str = await get_translate('embed_help', ctx)
+        eb_dict: dict[str, str] = load_translated(eb_str)[0]
+        author: str = eb_dict.get('author', '')
+        description: str = eb_dict.get('description', '')
+        ''''''
+
+        eb = create_basic_embed(description=description, 功能=author)
+        await ctx.send(embed=eb)
 
     @commands.hybrid_command(name=locale_str('emoji'), description=locale_str('emoji'))
     async def emoji(self, ctx: commands.Context, name: str):
