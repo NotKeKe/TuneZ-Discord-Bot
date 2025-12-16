@@ -7,6 +7,16 @@
 一個基於 Python，每個需要在 Discord 播放音樂的人都可以<strong>開箱即用</strong>的 Discord bot。
 </p>
 
+<div align="center">
+
+![Stars](https://img.shields.io/github/stars/NotKeKe/TuneZ-Discord-Bot?style=social)
+
+[![License](https://img.shields.io/badge/license-Apache%20License%202.0-yellow)](LICENSE) <br>
+[![Docs](https://img.shields.io/badge/Docs-简体中文-blue.svg)](assets/docs/README_simp_chinese.md) 
+[![Docs](https://img.shields.io/badge/Docs-English-blue.svg)](assets/docs/README_en.md)
+
+</div>
+
 ## 📖 前言
 <details>
     <summary>為什麼要做這個?</summary>
@@ -98,7 +108,7 @@ TuneZ 有支援中文，只是因為我的 Discord 預設語言是英文，所�
 ### 1. 如果你只是單純希望有一個 Discord 音樂機器人，可以直接邀請[音汐](https://github.com/NotKeKe/Discord-Bot-YinXi)進你的群，這也是我最早開始做的專案。
 - [邀請連結](https://discord.com/oauth2/authorize?client_id=990798785489825813)
 ### 2. 自架 ~~(既然你都點進這個專案了 應該也會選擇這個吧)~~ <br>
-**❗如果你還沒有 Discord Bot，先前往[這個檔案](assets/docs//Register_Discord_Bot.md)去看教學❗**
+**❗如果你還沒有 Discord Bot，先前往[這個檔案](assets/docs/Register_Discord_Bot/Register_Discord_Bot.md)去看教學❗**
 
 **❗除了使用 .exe 以外，其他方法暫時都需要先 克隆/下載該專案❗** <br>
 <small>`git clone https://github.com/NotKeKe/TuneZ-Discord-Bot.git`</small>

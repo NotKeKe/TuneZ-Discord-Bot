@@ -1,5 +1,13 @@
+<div align="center">
+
+[![Docs](https://img.shields.io/badge/Docs-简体中文-blue.svg)](Register_Discord_Bot_simp_chinese.md) 
+[![Docs](https://img.shields.io/badge/Docs-English-blue.svg)](Register_Discord_Bot_en.md)
+
+</div>
+
+
 ## 註冊 Discord Bot
-如果你還沒有 discord 帳號的話 先去註冊一個 ~~這應該不用教吧~~
+如果你還沒有 Discord 帳號的話 先去註冊一個 ~~這應該不用教吧~~
 
 ### 註冊
 1. 進入 [Discord Developer Application](https://discord.com/developers/applications) 的網頁
