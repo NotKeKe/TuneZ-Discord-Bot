@@ -214,3 +214,8 @@ TuneZ supports Chinese. It's just showing English because my Discord default lan
             </li>
         </ul>
     </details>
+
+## Postscript (?
+- **Remember to give me a Star if you succeed! It's my source of motivation!**
+- No matter what problems or bugs you encounter, you can raise them in [issue](https://github.com/NotKeKe/TuneZ-Discord-Bot/issues)
+    - ~~Hope I can answer them~~

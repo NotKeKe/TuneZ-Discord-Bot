@@ -214,3 +214,8 @@ TuneZ 有支援中文，只是因为我的 Discord 预设语言是英文，所�
             </li>
         </ul>
     </details>
+
+## 后言 (?
+- **跑成功记得给我一个 Star  我的动力来源阿阿阿啊**
+- 不管遇到什么问题 or bug，都可以在 [issue](https://github.com/NotKeKe/TuneZ-Discord-Bot/issues) 提出来
+- ~~希望我回答的出来~~
