@@ -9,13 +9,12 @@ import platform
 from . import utils
 from .utils import players
 from .downloader import Downloader
-# from .lyrics import search_lyrics
 
-from core.utils import create_basic_embed, current_time, secondToReadable, math_round, redis_client
+from core.utils import create_basic_embed, secondToReadable, math_round, redis_client
 from core.translator import load_translated, get_translate
 from core.emojis import get_emoji
-from core.mongodb import MongoDB_DB, find_one, update_one
 from core.config import FFMPEG_PATH
+from core.sql import get_db
 
 loop_option = ('None', 'single', 'list')
 loop_type = Literal['None', 'single', 'list']
@@ -62,11 +61,6 @@ class Player:
 
         # 使用者輸入 playlist，載入歌曲的 task
         self.playlist_load_task: asyncio.Task | None = None
-
-        # self.downloader = Downloader(query)
-
-        # self.downloader.run()
-        # self.title, self.video_url, self.audio_url, self.thumbnail_url, self.duration = self.downloader.get_info()
 
         assert hasattr(self.bot, 'loop')
     
@@ -152,14 +146,17 @@ class Player:
         prefer_loop = await redis_client.get(f'{PREFER_LOOP_KEY}:{self.ctx.author.id}')
         if prefer_loop:
             self.loop(prefer_loop)
-        else: # find from mongodb
-            prefer_loop = await find_one(
-                MongoDB_DB.music['prefer_loop'],
-                {'user_id': self.ctx.author.id}
-            )
-            if prefer_loop:
-                self.loop(prefer_loop['loop'])
-                await redis_client.set(f'{PREFER_LOOP_KEY}:{self.ctx.author.id}', prefer_loop['loop'])
+        else: 
+            # find from sqlite
+            async with get_db() as db:
+                async with db.execute(
+                    "SELECT loop FROM prefer_loop WHERE user_id = ? LIMIT 1",
+                    (self.ctx.author.id,)
+                ) as cursor:
+                    prefer_loop = await cursor.fetchone()
+                    if prefer_loop:
+                        self.loop(prefer_loop[0])
+                        await redis_client.set(f'{PREFER_LOOP_KEY}:{self.ctx.author.id}', prefer_loop['loop'])
 
         
         if not self.list:
@@ -216,12 +213,12 @@ class Player:
 
         async def change_prefer_loop(redis_key: str, value: str):
             await redis_client.set(redis_key, value)
-            await update_one(
-                MongoDB_DB.music['prefer_loop'],
-                {'user_id': self.ctx.author.id},
-                {'$set': {'loop': value}},
-                upsert=True
-            )
+            async with get_db() as db:
+                await db.execute(
+                    "INSERT INTO prefer_loop (user_id, loop) VALUES (?, ?) ON CONFLICT (user_id) DO UPDATE SET loop = excluded.loop",
+                    (self.ctx.author.id, value)
+                )
+                await db.commit()
 
         asyncio.create_task(change_prefer_loop(key, self.loop_status)) # type: ignore
 
@@ -448,12 +445,6 @@ class Player:
         self.ctx = None # type: ignore
         self.voice_client = None
         self.bot = None
-
-    # async def search_lyrics(self) -> str:
-    #     query = self.list[self.current_index].get('title')
-    #     result = await search_lyrics(query=query)
-    #     if not result: return await get_translate('send_player_lyrics_not_found', self.locale)
-    #     return result
     
     async def volume_adjust(self, volume: Optional[float] = None, add: Optional[float] = None, reduce: Optional[float] = None) -> discord.Message | bool:
         '''調整音量，add 和 reduce 皆為`正`浮點數，且音量最大值為 2.0。此 func 也會傳送訊息通知使用者將音量調整為多少'''

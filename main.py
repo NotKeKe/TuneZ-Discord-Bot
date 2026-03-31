@@ -67,18 +67,25 @@ async def load():
             logger.error('Error while loading command: ' + filename.stem, exc_info=True)
 
 async def main():
-    await setup_bot()
-    async with bot:
-        await load()
-        bot_token = os.getenv('DISCORD_TOKEN')
-        if bot_token is None or bot_token == 'DISCORD_TOKEN':
-            raise ValueError(f'DISCORD_TOKEN is not set. Please set it in `{str(ENV_PATH)}`.')
-        await bot.start(bot_token)
+    try:
+        await setup_bot()
+        async with bot:
+            await load()
+            bot_token = os.getenv('DISCORD_TOKEN')
+            if bot_token is None or bot_token == 'DISCORD_TOKEN':
+                logger.error(f'DISCORD_TOKEN is not set. Please set it in `{str(ENV_PATH)}`.')
+                exit()
+            await bot.start(bot_token)
+    except (KeyboardInterrupt, asyncio.CancelledError): pass
+    finally:
+        logger.info('Bot is shutting down.')
+        from core.utils import close_event
+        await close_event()
 
 if __name__ == '__main__':
     import multiprocessing
+    multiprocessing.freeze_support()
     try:
-        multiprocessing.freeze_support()
         asyncio.run(main())
     except KeyboardInterrupt:
-        logger.info('Bot is shutting down.')
+        pass

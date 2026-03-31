@@ -3,40 +3,41 @@ from discord.app_commands import Choice
 from typing import List
 from datetime import datetime, timedelta, timezone
 
-from core.mongodb import MongoDB_DB
-from core import mongodb
 from core.utils import redis_client
+from core.sql import get_db
 
 async def custom_play_list_autocomplete(inter: Interaction, curr: str) -> List[Choice[str]]:
-    coll = MongoDB_DB.music['metas']
-
-    _filter = {
-        'type': 'custom_play_list',
-        'user_id': inter.user.id,
-        **({'list_name': {"$regex": f".*{curr}.*", "$options": "i"}} if curr else {})
-    }
+    query = (
+        'SELECT list_name, list_played_times, list_last_played_at FROM metas '
+        'WHERE type="custom_play_list" and user_id=? '
+        'and list_name LIKE ? COLLATE NOCASE '
+        'LIMIT 25'
+    )
 
     results = []
+
+    async with get_db() as db:
+        cursor = await db.execute(query, (inter.user.id, f"%{curr}%"))
+        async for meta in cursor:
+            name = meta['list_name']
+            play_times = meta['list_played_times']
+            last_play_utc_str = meta["list_last_played_at"]
+            if last_play_utc_str != '':
+                last_play_utc = datetime.fromisoformat(last_play_utc_str) # utc 0
+                last_play_utc8 = last_play_utc.astimezone(timezone(timedelta(hours=8))) # 轉為 utc+8
+                last_play = last_play_utc8.strftime('%Y/%m/%d %H:%M:%S %A')
+            else:
+                last_play = 'Unknown'
+
+            results.append((
+                name, # str
+                play_times, # int
+                last_play # str
+            ))
+
+    results.sort(key=lambda x: (-x[1], x[0]))
+
     format_template = 'Name: "{}" | PlayedTimes: "{}" | LastPlay: "{}"'
-
-    for meta in await mongodb.find(coll, _filter):
-        name = meta['list_name']
-        play_times = meta['list_played_times']
-        last_play_utc_str = meta["list_last_played_at"]
-        if last_play_utc_str != '':
-            last_play_utc = datetime.fromisoformat(last_play_utc_str) # utc 0
-            last_play_utc8 = last_play_utc.astimezone(timezone(timedelta(hours=8))) # 轉為 utc+8
-            last_play = last_play_utc8.strftime('%Y/%m/%d %H:%M:%S %A')
-        else:
-            last_play = 'Unknown'
-
-        results.append((
-            name, # str
-            play_times, # int
-            last_play # str
-        ))
-
-    results.sort(key=lambda x: (-x[1], x[0])) # 先使用播放次數排序(-可以 reverse), 再使用名稱排序
 
     return [
         Choice(name=format_template.format(name, play_time, last_play), value=name) 

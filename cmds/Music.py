@@ -267,17 +267,6 @@ class Music(commands.Cog):
     async def _leave(self, ctx: commands.Context):
         await ctx.invoke(self.bot.get_command('stop')) # type: ignore
 
-    # @commands.hybrid_command(name=locale_str('lyrics'), description=locale_str('lyrics'))
-    # @app_commands.describe(query=locale_str('lyrics_query'), artist=locale_str('lyrics_artist'), lrc=locale_str('lyrics_lrc'))
-    # async def lyrics_search(self, ctx: commands.Context, query: str, artist: Optional[str] = None, lrc: bool = False):
-    #     async with ctx.typing():
-    #         result = await search_lyrics(query, artist, lrc)
-    #         await ctx.send(result if result else await get_translate('send_lyrics_not_found'))
-
-    #         if not isinstance(result, str): return
-
-    #         if len(result.splitlines()) < 10: await ctx.send(await get_translate('send_lyrics_too_short_tip'), ephemeral=True)
-
     @commands.hybrid_command(name=locale_str('volume'), description=locale_str('volume'))
     @app_commands.describe(volume=locale_str('volume_volume'))
     async def volume_adjust(self, ctx: commands.Context, volume: Optional[int] = None):

@@ -3,6 +3,11 @@ from discord import Member, Color, Embed, Interaction
 from typing import Optional
 from datetime import datetime, timedelta, timezone
 from fakeredis.aioredis import FakeRedis
+import asyncio
+import logging
+
+logger = logging.getLogger(__name__)
+
 
 bot: Optional[commands.Bot] = None
 
@@ -61,3 +66,22 @@ def current_time(UTC: int = 8) -> str:
     '''回傳現在時間(str)，arg: UTC: 使用者所提供的時區'''
     time = datetime.now(timezone(timedelta(hours=UTC)))
     return time.strftime('%Y/%m/%d %H:%M:%S %A')
+
+async def close_event():
+    await redis_client.close()
+    logger.info('Redis closed.')
+
+    try:
+        from cmds.music_bot.utils import QUEUE
+        for task in QUEUE.workers:
+            task.cancel()
+
+        await asyncio.gather(*QUEUE.workers, return_exceptions=True)
+        QUEUE.workers.clear()
+        logger.info('priority_queue closed.')
+    except Exception as e:
+        logger.error(f'Error while closing music bot: {e}', exc_info=True)
+
+    if bot:
+        await bot.close()
+        logger.info('Bot closed.')

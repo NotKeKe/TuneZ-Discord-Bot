@@ -11,7 +11,7 @@ from . import utils
 from .utils import get_video_id, check_audio_url_alive, QUEUE
 
 from core.utils import redis_client, secondToReadable, math_round
-from core.mongodb import MongoDB_DB, update_one, find_one
+from core.sql import get_db
 
 logger = logging.getLogger(__name__)
 
@@ -80,11 +80,14 @@ class RedisTemp:
                 logger.info(f"Song {video_url} found from redis.")
                 return d | {'duration_int': int(d['duration_int'])}
             
-        # find from mongodb
-        doc = await find_one(MongoDB_DB.music['temp_urls'], {'video_id': video_id})
-        if doc and await check_audio_url_alive(doc.get('audio_url', '')):
-            logger.info(f"Song {video_url} found from MongoDB.")
-            return doc
+        # find from sqlite
+        async with get_db() as db:
+            async with db.execute(f"SELECT * FROM temp_urls WHERE video_id=? LIMIT 1", (video_id, )) as cursor:
+                doc = await cursor.fetchone()
+
+                if doc and await check_audio_url_alive(dict(doc).get('audio_url', '')):
+                    logger.info(f"Song {video_url} found from MongoDB.")
+                    return dict(doc)
 
     @classmethod
     async def upload(cls, title, video_url, audio_url, thumbnail_url, duration, duration_int):
@@ -93,6 +96,9 @@ class RedisTemp:
 
         # upload to redis
         key = cls.redis_base_key + video_id
+
+        # 重組 video_url
+        video_url = f'https://youtu.be/{video_id}'
 
         data = {
             'title': title,
@@ -106,13 +112,16 @@ class RedisTemp:
         await redis_client.hset(key, mapping=data) # type: ignore
         await redis_client.expire(key, 60*60) # 60 分鐘後過期
 
-        # upload to mongodb
-        await update_one(
-            MongoDB_DB.music['temp_urls'], 
-            {'video_id': video_id}, 
-            {"$set": data},
-            upsert=True
-        )
+        # upload to sqlite
+        async with get_db() as db:
+            await db.execute(
+                (
+                    "INSERT OR REPLACE INTO temp_urls "
+                    "(video_id, title, video_url, audio_url, thumbnail_url, duration, duration_int) VALUES (?, ?, ?, ?, ?, ?, ?)"
+                ),
+                (video_id, title, video_url, audio_url, thumbnail_url, duration, duration_int)
+            )
+            await db.commit()
 
 class Downloader:
     '''User await Downloader(query).run()'''

@@ -5,15 +5,10 @@ from discord.ext import commands
 from concurrent.futures import ProcessPoolExecutor
 import uuid
 
-from core.mongodb import MongoDB_DB
-from core import mongodb
-
 from .utils import convert_to_short_url, is_url, QUEUE
 from .player import Player, loop_option
 
-db = MongoDB_DB.music
-metas_coll = db['metas']
-custom_play_list_coll = db['custom_play_list']
+from core.sql import get_db
 
 def _get_url_title(url: str) -> dict:
     with yt_dlp.YoutubeDL({'quiet': True}) as ydl:
@@ -41,49 +36,79 @@ async def add_to_custom_list(url: str, list_name: str, user_id: int) -> str | bo
     short_url = convert_to_short_url(url)
     if not short_url: return 'Cannot convert your url to "https://youtu.be/..."'
 
-    # add to metas
-    _filter = {'type': 'custom_play_list', 'user_id': user_id, 'list_name': list_name}
-
-    if not await mongodb.find_one(metas_coll, _filter):
-        await mongodb.insert_one(
-            metas_coll, 
-            _filter | {
-                'list_played_times': 0, 
-                'list_created_at': datetime.now(timezone.utc).isoformat(), 
-                'list_last_played_at': ''
-            }
+    async with get_db() as db:
+        # add to metas
+        cursor = await db.execute(
+            'SELECT * FROM metas '
+            'WHERE type="custom_play_list" and user_id=? and list_name=?'
+            'LIMIT 1',
+            (user_id, list_name)
         )
 
-    _filter = {'user_id': user_id, 'list_name': list_name, 'video_url': short_url}
-    if not await mongodb.find_one(custom_play_list_coll, _filter):
-        # 取得影片資訊
-        loop = asyncio.get_running_loop()
-    
-        task_id = str(uuid.uuid4())
-        await QUEUE.add_task(task_id, 1, get_url_title(short_url))
-        result = await QUEUE.get_result(task_id)
+        if (await cursor.fetchone()) is None:
+            await db.execute(
+                'INSERT INTO metas (type, user_id, list_name, list_played_times, list_created_at, list_last_played_at) '
+                'VALUES (?, ?, ?, ?, ?, ?)',
+                ('custom_play_list', user_id, list_name, 0, datetime.now(timezone.utc).isoformat(), '')
+            )
+            await db.commit()
 
-        title = result['title']
-        duration = result['duration']
-        thumbnail = result['thumbnail']
+        # add to custom_play_list
+        cursor = await db.execute(
+            'SELECT * FROM custom_play_list '
+            'WHERE user_id=? and list_name=? and video_url=?'
+            'LIMIT 1',
+            (user_id, list_name, short_url)
+        )
 
-        # 加進 custom_play_list collection
-        await mongodb.insert_one(custom_play_list_coll, _filter | {
-            'title': title, 
-            'duration_int': duration, 
-            'thumbnail_url': thumbnail, 
-            'created_at': datetime.now(timezone.utc).isoformat(),
-        })
-    return True
+        if (await cursor.fetchone()) is None:
+            # 取得影片資訊
+            task_id = str(uuid.uuid4())
+            await QUEUE.add_task(task_id, 1, get_url_title(short_url))
+            result = await QUEUE.get_result(task_id)
+
+            title = result['title']
+            duration = result['duration']
+            thumbnail = result['thumbnail']
+
+            # 加到 db
+            await db.execute(
+                'INSERT INTO custom_play_list (user_id, list_name, video_url, created_at, title, duration_int, thumbnail_url) '
+                'VALUES (?, ?, ?, ?, ?, ?, ?)',
+                (user_id, list_name, short_url, datetime.now(timezone.utc).isoformat(), title, duration, thumbnail)
+            )
+            await db.commit()
+
+        return True
 
 async def del_custom_list(list_name: str, user_id: int):
-    _filter = {'user_id': user_id, 'list_name': list_name}
-    await mongodb.delete_many(metas_coll, _filter)
-    await mongodb.delete_one(metas_coll, _filter | {'type': 'custom_play_list'})
+    async with get_db() as db:
+        await db.execute(
+            'DELETE FROM metas '
+            'WHERE user_id=? and list_name=? and type="custom_play_list"',
+            (user_id, list_name)
+        )
+
+        await db.execute(
+            'DELETE FROM custom_play_list '
+            'WHERE user_id=? and list_name=?',
+            (user_id, list_name)
+        )
+
+        await db.commit()
 
 async def get_custom_list(list_name: str, user_id: int) -> list[tuple[str, str]]:
-    _filter = {'user_id': user_id, 'list_name': list_name}
-    return [(item['title'], item['video_url']) for item in await mongodb.find(custom_play_list_coll, _filter)]
+    async with get_db() as db:
+        cursor = await db.execute(
+            'SELECT * FROM custom_play_list '
+            'WHERE user_id=? and list_name=? '
+            'ORDER BY created_at ASC', # 由遠到近
+            (user_id, list_name)
+        )
+
+        datas = await cursor.fetchall()
+
+        return [(item['title'], item['video_url']) for item in datas]
 
 class CustomListPlayer:
     '''這個類主要用於將 custom_play_list 的歌曲 加進 Player 物件當中'''
@@ -106,24 +131,40 @@ class CustomListPlayer:
             ...
     
     async def load_songs(self):
-        _filter = {'user_id': self.user_id, 'list_name': self.list_name}
+        async with get_db() as db:
+            cursor = await db.execute(
+                'SELECT * FROM custom_play_list '
+                'WHERE user_id=? and list_name=? '
+                'ORDER BY created_at ASC',
+                (self.user_id, self.list_name)
+            )
 
-        for song in await mongodb.find(custom_play_list_coll, _filter):
-            self.songs.append(song['video_url'])
+            async for song in cursor:
+                self.songs.append(song['video_url'])
 
-        # 順便修改 metas 的 list_last_played_at
-        new_doc = await mongodb.find_one_and_update(
-            metas_coll,
-            {'user_id': self.user_id, 'type': 'custom_play_list', 'list_name': self.list_name},
-            {
-                '$set': {'list_last_played_at': datetime.now(timezone.utc).isoformat()},
-                '$inc': {'list_played_times': 1}
-            },
-            return_document=True, # 回傳更新後的 doc
-            upsert=True
-        )
-        if not new_doc or not isinstance(new_doc, dict): raise
-        self.new_doc = new_doc
+            # 順便修改 metas 的 list_last_played_at
+
+            # 更新
+            await db.execute("""
+                INSERT INTO metas (type, user_id, list_name, list_played_times, list_created_at, list_last_played_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+                ON CONFLICT (user_id, type, list_name) DO UPDATE SET
+                    list_last_played_at = excluded.list_last_played_at,
+                    list_played_times = metas.list_played_times + 1
+                """,
+                ('custom_play_list', self.user_id, self.list_name, 0, datetime.now(timezone.utc).isoformat(), '')
+            )
+            await db.commit()
+
+            # 查詢最新資訊
+            cursor = await db.execute(
+                'SELECT * FROM metas '
+                'WHERE user_id=? and type=? and list_name=?',
+                (self.user_id, 'custom_play_list', self.list_name)
+            )
+            new_doc = await cursor.fetchone()
+            if not new_doc: raise
+            self.new_doc = dict(new_doc)
 
     async def add_songs_to_player(self):
         # 先讓兩首歌出去後，剩下的歌用背景任務的方式新增，避免使用者等待過久
@@ -150,7 +191,15 @@ class CustomListPlayer:
             self.loop_status = loop_option[index]
 
             async def change_to_metas():
-                await mongodb.update_one(metas_coll, _filter, {'$set': {'loop_status': self.loop_status}}, upsert=True)
+                async with get_db() as db:
+                    await db.execute(
+                        "INSERT INTO metas (user_id, type, list_name, loop_status) VALUES (?, ?, ?, ?) "
+                        "ON CONFLICT (user_id, type, list_name) "
+                        "DO UPDATE SET loop_status = excluded.loop_status",
+                        (_filter['user_id'], _filter['type'], _filter['list_name'], self.loop_status)
+                    )
+                    await db.commit()
+
             asyncio.create_task(change_to_metas())
 
         self.player.turn_loop = turn_loop.__get__(self.player) # what is this um

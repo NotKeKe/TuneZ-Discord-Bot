@@ -12,7 +12,7 @@ class MyPriorityQueue:
         self.results = {}
         self._counter = itertools.count()
 
-        self.workers = []
+        self.workers: list[asyncio.Task] = []
 
     async def add_task(self, task_id: str, priority: int, function):
         if not self.workers:
