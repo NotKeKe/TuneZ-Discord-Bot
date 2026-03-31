@@ -144,13 +144,15 @@ async def send(ctx: commands.Context | discord.Interaction, text: Optional[str] 
             view = MISSING
         if not embed:
             embed = MISSING
-        msg = await ctx.response.send_message(text, embed=embed, view=view, ephemeral=ephemeral) # type: ignore
+        ori_msg = await ctx.response.send_message(text, embed=embed, view=view, ephemeral=ephemeral) # type: ignore
+        msg = ori_msg.resource
     else: raise ValueError('Invalid context type')
 
     if view and view is not MISSING:
         async def wait_view(view: discord.ui.View, msg: discord.Message):
             await view.wait()
-            await msg.edit(view=None)
+            if isinstance(msg, discord.Message):
+                await msg.edit(view=None)
         
         asyncio.create_task(wait_view(view, msg)) # type: ignore
 

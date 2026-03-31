@@ -18,7 +18,8 @@
         "add_custom_list": "add_custom_list",
         "delete_custom_list": "delete_custom_list",
         "show_custom_list": "show_custom_list",
-        "help": "help"
+        "help": "help",
+        "remove_one_from_custom_list": "remove_one_song"
     },
     "description": {
         "play": "Play music",
@@ -31,14 +32,15 @@
         "loop": "Set the loop mode",
         "nowplaying": "Show the currently playing song",
         "queue": "Show the playlist",
-        "remove": "Remove a song from the playlist",
-        "clear": "Clear the entire playlist",
+        "remove": "Remove a song from the current queue",
+        "clear": "Clear the entire current queue",
         "leave": "Leave the voice channel",
         "volume": "Adjust the volume",
         "play_custom_list": "Play a custom playlist, you can use /add_custom_list to add songs.",
         "add_custom_list": "Add songs to a custom playlist",
         "delete_custom_list": "Delete the entire selected custom playlist",
-        "show_custom_list": "Show all songs in a single custom playlist"
+        "show_custom_list": "Show all songs in a single custom playlist",
+        "remove_one_from_custom_list": "Permanently remove a song from a playlist."
     },
     "params_desc": {
         "play_query": "Enter a song name, YouTube link, or playlist",
@@ -46,7 +48,8 @@
         "loop_loop_type": "Select loop mode (None, single, list)",
         "remove_number": "The number of the song to remove (viewable from /queue)",
         "volume_volume": "Set the volume (0-200), or use the buttons to fine-tune",
-        "add_custom_list_list_name": "To create a new playlist, simply enter the desired playlist name."
+        "add_custom_list_list_name": "To create a new playlist, simply enter the desired playlist name.",
+        "remove_one_from_custom_list_index": "The song number to remove (can be viewed from /show_custom_list), starting from 1"
     },
     "components": {
         "send_play_not_in_voice": "You don't seem to be in a voice channel? Join one first",
@@ -124,6 +127,10 @@
         "send_add_to_custom_list_success": "Successfully added song to custom playlist `({list_name})`.",
         "send_delete_custom_list_success": "Successfully deleted custom playlist `({list_name})`.",
         "send_delete_custom_list_cancelled": "Deletion of custom playlist `({list_name})` has been cancelled.",
+        "send_remove_one_from_custom_list_success": "Removed `({title})` from `({list_name})`.",
+        "embed_remove_one_confirm": [{
+            "title": "Are you sure you want to remove `({title})` from `({list_name})`?"
+        }],
         "send_play_custom_list_already_playing_left_first": "You should let me leave this channel so I can play your custom playlist.",
         "send_play_not_in_guild": "You must be in a guild to play music.",
         "button_previous": "Previous",

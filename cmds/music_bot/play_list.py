@@ -109,6 +109,47 @@ async def get_custom_list(list_name: str, user_id: int) -> list[tuple[str, str]]
         datas = await cursor.fetchall()
 
         return [(item['title'], item['video_url']) for item in datas]
+    
+async def remove_one_from_custom_list(list_name: str, index: int, user_id: int):
+    """
+    Async generator for removing one song from custom list.
+    
+    Yield 1: {'title': ..., 'video_url': ...} - song info for confirmation
+    Yield 2: True - deletion confirmed
+    """
+    async with get_db() as db:
+        cursor = await db.execute(
+            'SELECT id, video_url, title FROM custom_play_list '
+            'WHERE user_id=? and list_name=? '
+            'ORDER BY created_at ASC',
+            (user_id, list_name)
+        )
+
+        datas = await cursor.fetchall()
+        datas = list(datas)
+
+        if not datas:
+            yield 'List is empty'
+            return
+
+        if index < 1 or index > len(datas):
+            yield f'Index: `{index}` out of range (1-{len(datas)})'
+            return
+
+        data = datas[index - 1]  # user sees 1-based index
+        data = dict(data)
+        
+        # 第一次 yield：回傳歌曲資訊用於確認
+        yield {'title': data['title'], 'video_url': data['video_url'], 'id': data['id']}
+
+        # 第二次 yield：執行刪除
+        await db.execute(
+            'DELETE FROM custom_play_list WHERE id=?',
+            (data['id'],)
+        )
+        await db.commit()
+        yield True
+
 
 class CustomListPlayer:
     '''這個類主要用於將 custom_play_list 的歌曲 加進 Player 物件當中'''

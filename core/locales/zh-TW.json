@@ -18,7 +18,8 @@
         "add_custom_list": "加入自訂播放清單",
         "delete_custom_list": "刪除自訂播放清單",
         "show_custom_list": "列出自訂播放清單的歌曲",
-        "help": "指令幫助"
+        "help": "指令幫助",
+        "remove_one_from_custom_list": "移除一首歌曲"
     },
     "description": {
         "play": "播放音樂",
@@ -31,14 +32,15 @@
         "loop": "設定循環播放模式",
         "nowplaying": "顯示目前播放的歌曲",
         "queue": "顯示播放清單",
-        "remove": "移除播放清單中的歌曲",
-        "clear": "清除整個播放清單",
+        "remove": "移除該階段播放清單中的某一歌曲",
+        "clear": "清除該階段的整個播放清單",
         "leave": "離開語音頻道",
         "volume": "調整音量",
         "play_custom_list": "播放自訂的播放清單，可使用 /add_custom_list 加入歌曲。",
         "add_custom_list": "將歌曲加入進自訂的播放清單",
         "delete_custom_list": "刪除所選的整個自訂播放清單",
-        "show_custom_list": "顯示單個自訂播放清單內的全部歌曲"
+        "show_custom_list": "顯示單個自訂播放清單內的全部歌曲",
+        "remove_one_from_custom_list": "從播放清單中，永久移除一首歌曲。"
     },
     "params_desc": {
         "play_query": "輸入歌曲名稱、YouTube 連結或播放清單",
@@ -46,7 +48,8 @@
         "loop_loop_type": "選擇循環模式 (None: 無, single: 單曲, list: 清單)",
         "remove_number": "要移除的歌曲編號 (可從 /queue 查看)",
         "volume_volume": "設定音量 (0-200)，或使用按鈕微調",
-        "add_custom_list_list_name": "若要建立新的播放清單，請直接輸入你想要的清單名稱"
+        "add_custom_list_list_name": "若要建立新的播放清單，請直接輸入你想要的清單名稱",
+        "remove_one_from_custom_list_index": "要移除的歌曲編號 (可從 /show_custom_list 查看)，數字從1開始"
     },
     "components": {
         "send_play_not_in_voice": "你好像不在語音頻道裡面? 先加入一個吧",
@@ -124,6 +127,10 @@
         "send_add_to_custom_list_success": "已成功將歌曲添加到自定義歌單 `({list_name})` 中。",
         "send_delete_custom_list_success": "已成功刪除自定義歌單 `({list_name})`。",
         "send_delete_custom_list_cancelled": "已取消刪除自定義歌單 `({list_name})`。",
+        "send_remove_one_from_custom_list_success": "已從 `({list_name})` 中移除 `({title})`。",
+        "embed_remove_one_confirm": [{
+            "title": "確定要從 `({list_name})` 中移除 `({title})` 嗎?"
+        }],
         "send_play_custom_list_already_playing_left_first": "要先讓我離開，才能播你的自定播放清單窩~",
         "send_play_not_in_guild": "你必須在伺服器中才能播放音樂。",
         "button_previous": "上一首",
