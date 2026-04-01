@@ -34,8 +34,8 @@ jobs:
           cache: 'bundler'
         
       - name: Build Jekyll site
-        # 留學: Jekyll 指令
-        run: bundle exec jekyll build --baseurl "${{ steps.pages.outputs.base_path }}"
+        # Jekyll build for GitHub Pages
+        run: bundle exec jekyll build
         env:
           JEKYLL_ENV: production
           
