@@ -34,8 +34,10 @@ jobs:
           cache: 'bundler'
         
       - name: Build Jekyll site
-        # Jekyll build for GitHub Pages with dynamic baseurl
+        # Jekyll build for GitHub Pages
+        # Run Jekyll in docs directory since workflow is in docs/.github/workflows/
         run: bundle exec jekyll build --baseurl "${{ github.event.repository.name }}"
+        working-directory: docs
         env:
           JEKYLL_ENV: production
           
