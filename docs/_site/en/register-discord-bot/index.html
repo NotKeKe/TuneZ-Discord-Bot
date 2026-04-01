@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Python-based Discord bot that works out-of-the-box for anyone who needs to play music on Discord.">
+    <title>Register Discord Bot - TuneZ</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/icon.png" alt="TuneZ Logo" width="40" height="40">
+                    <span>TuneZ</span>
+                </a>
+
+                <nav class="main-nav">
+                    
+                    <a href="/en/">Home</a>
+                    <a href="/en/installation/">Installation</a>
+                    <a href="/en/commands/">Commands</a>
+                    <a href="/en/custom-playlist/">Custom Playlist</a>
+                    <a href="/en/faq/">FAQ</a> 
+                </nav>
+
+                <div class="language-switcher">
+                    <select id="lang-select" onchange="switchLanguage(this.value)">
+                        <option value="en" selected>English</option>
+                        <option value="zh-TW" >繁體中文</option>
+                        <option value="zh-CN" >简体中文</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            
+            <nav class="breadcrumb">
+                
+                <a href="/en/">Home</a>  
+                <span class="separator">/</span>
+                <a href="/en/">Home</a> 
+                <span class="separator">/</span>
+                <a href="">Register Discord Bot</a> 
+            </nav>
+            
+
+            <!-- Page Content -->
+            <article class="page-content">
+                <h2 id="registering-a-discord-bot">Registering a Discord Bot</h2>
+<p>If you don’t have a Discord account yet, go register one first <del>I shouldn’t need to teach you this, right?</del></p>
+
+<h3 id="registration">Registration</h3>
+<ol>
+  <li>Go to the <a href="https://discord.com/developers/applications">Discord Developer Application</a> website.
+<img src="/assets/docs/Register_Discord_Bot/assets/application_site.png" alt="Application Site" /></li>
+  <li>Click <strong>New Application</strong> in the top right corner.
+    <ul>
+      <li>Enter the name you want for your Bot in the <strong>Name</strong> field.</li>
+      <li>Click “By clicking……” <del>(Translation: If you click create, it means you agree to Discord’s <a href="https://support-dev.discord.com/hc/articles/8562894815383-Discord-Developer-Terms-of-Service">Developer Terms of Service</a> and <a href="https://support-dev.discord.com/hc/articles/8563934450327-Discord-Developer-Policy">Developer Policy</a> )</del></li>
+      <li>Click <strong>Create</strong>.
+<img src="/assets/docs/Register_Discord_Bot/assets/new_application.png" alt="New Applicaiotn" /></li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="enabling-permissions">Enabling Permissions</h3>
+<ol>
+  <li>After creating it, you should land on a page like this. Click <strong>Bot</strong> under the Settings menu on the left. Next, you need to give the bot <strong>intents</strong> for it to work properly.
+<img src="/assets/docs/Register_Discord_Bot/assets/created_application.png" alt="Created Application" /></li>
+  <li>After clicking, scroll down and check all three options.
+    <ul>
+      <li>Remember to click <strong>Save Changes</strong> at the bottom. I’m not screenshotting this part, kinda lazy lol.
+<img src="/assets/docs/Register_Discord_Bot/assets/click_intents.png" alt="Click Intents" /></li>
+    </ul>
+  </li>
+  <li>(1) Click <strong>Installation</strong> on the left menu. We need to let Discord know it’s a Bot <del>(because a simple application can also be used just to show Discord Rich Presence status)</del>.
+    <ul>
+      <li>(2) Click the dropdown under <strong>Scopes</strong> and select <strong>bot</strong>.</li>
+      <li>After clicking, <strong>Permissions</strong> will appear below. These are the default permissions given to the Bot when it joins a server.</li>
+      <li>Check the following options in that menu:
+        <ul>
+          <li>Add Reactions</li>
+          <li>Attach Files</li>
+          <li>Connect</li>
+          <li>Embed Links (sending embeds, you know those cool layouts you see but can’t type out yourself)</li>
+          <li>Read Message History</li>
+          <li>Send Messages</li>
+          <li>Speak</li>
+          <li>Use Slash Commands (not sure if we actually need this one, though)</li>
+          <li>View Channels
+<img src="/assets/docs/Register_Discord_Bot/assets/installation_bot.png" alt="Set Installation - Bot" /></li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="getting-the-token--invite-link">Getting the Token &amp; Invite Link</h3>
+<ol>
+  <li>Next, get the Token. This is super important; without it, your Bot will never start.
+    <ul>
+      <li>(1) Go to <strong>Bot</strong> under the Settings menu on the left.</li>
+      <li>(2) Click <strong>Reset Token</strong>.</li>
+      <li>Click the red button (Yes, do it!). It’s asking if you’re sure you want to reset the Token.
+        <ul>
+          <li>Since we haven’t even used this Bot yet, resetting it doesn’t matter.</li>
+        </ul>
+      </li>
+      <li>After clicking, it might ask for verification, like your password. Or if you have Multi-Factor Authentication enabled, you might need that too.
+<img src="/assets/docs/Register_Discord_Bot/assets/reset_token.png" alt="Reset Token" /></li>
+    </ul>
+  </li>
+  <li>Once finished, you should be able to see your Token. Copy it (Click Copy, or highlight and copy manually, whatever).
+    <ul>
+      <li><strong>Keep this Token safe and don’t give it to anyone. You’ll need it later when starting the Discord Bot!</strong>
+<img src="/assets/docs/Register_Discord_Bot/assets/copy_token.png" alt="Get Token" /></li>
+    </ul>
+  </li>
+  <li>Get the Bot Invite Link
+<img src="/assets/docs/Register_Discord_Bot/assets/get_invite_url.png" alt="Get Invite URL" /></li>
+</ol>
+
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-toc">
+                    
+                    <h3>Quick Links</h3>
+                    <nav class="toc-nav">
+                        <a href="/en/">Home</a>
+                        <a href="/en/installation/">Installation</a>
+                        <a href="/en/commands/">Commands</a>
+                        <a href="/en/custom-playlist/">Custom Playlist</a>
+                        <a href="/en/faq/">FAQ</a>
+                    </nav>
+                    
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2024 TuneZ. Built with Jekyll.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/NotKeKe/TuneZ-Discord-Bot" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://discord.com/oauth2/authorize?client_id=990798785489825813" target="_blank">
+                        <i class="fab fa-discord"></i> Invite Bot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        function switchLanguage(lang) {
+            const currentPath = window.location.pathname;
+
+            // Language codes to match
+            const langPattern = /^\/(en|zh-TW|zh-CN)(\/|$)/;
+
+            // Check if path starts with a language code (local development)
+            const langMatch = currentPath.match(langPattern);
+
+            if (langMatch) {
+                // Path starts with language code (no baseurl or local development)
+                // e.g., /en/faq -> /zh-TW/faq
+                const afterLang = currentPath.substring(langMatch[0].length);
+                window.location.href = '/' + lang + afterLang;
+            } else {
+                // Path has a prefix (likely repository name) before language
+                // e.g., /TuneZ-Discord-Bot/en/faq -> /TuneZ-Discord-Bot/zh-TW/faq
+                const prefixPattern = /^(\/[^/]+)(\/en\/|\/zh-TW\/|\/zh-CN\/)/;
+                const prefixMatch = currentPath.match(prefixPattern);
+
+                if (prefixMatch) {
+                    window.location.href = prefixMatch[1] + '/' + lang + '/';
+                } else {
+                    // No language found, just go to language root
+                    window.location.href = '/' + lang + '/';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

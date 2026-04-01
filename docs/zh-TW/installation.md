@@ -15,7 +15,7 @@ breadcrumb:
 本指南將幫助您在自己的伺服器上設定 TuneZ。請選擇最適合您的方法。
 
 <div class="callout callout-warning">
-  <strong>⚠️ 前置需求：</strong>在繼續之前，您需要有一個 Discord Bot Token。如果您還沒有，請先查看<a href="{{ '/zh-TW/installation/' | relative_url }}#創建-discord-bot">創建 Discord Bot</a>章節。
+  <strong>⚠️ 前置需求：</strong>在繼續之前，您需要有一個 Discord Bot Token。如果您還沒有，請先查看<a href="{{ '/zh-TW/register-discord-bot/' | relative_url }}">註冊 Discord Bot</a>指南。
 </div>
 
 ---

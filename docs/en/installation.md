@@ -15,7 +15,7 @@ breadcrumb:
 This guide will help you set up TuneZ on your own server. Choose the method that best suits your needs.
 
 <div class="callout callout-warning">
-  <strong>⚠️ Prerequisites:</strong> You need to have a Discord Bot token before proceeding. If you don't have one, follow the <a href="{{ '/en/installation/' | relative_url }}#create-discord-bot">Create Discord Bot</a> section first.
+  <strong>⚠️ Prerequisites:</strong> You need to have a Discord Bot token before proceeding. If you don't have one, follow the <a href="{{ '/en/register-discord-bot/' | relative_url }}">Register Discord Bot</a> guide first.
 </div>
 
 ---
