@@ -103,10 +103,33 @@
     <script>
         function switchLanguage(lang) {
             const currentPath = window.location.pathname;
-            // Remove current language prefix
-            const pathWithoutLang = currentPath.replace(/^\/(en|zh-TW|zh-CN)/, '');
-            // Navigate to new language version
-            window.location.href = '/' + lang + pathWithoutLang;
+
+            // Extract the repository name from the path
+            // e.g., /TuneZ-Discord-Bot/en/commands -> /en/commands
+            const pathParts = currentPath.split('/').filter(Boolean);
+
+            // Find if there's a language code in the path
+            const languageCodes = ['en', 'zh-TW', 'zh-CN'];
+            let hasLanguage = false;
+            let pathWithoutLang = [];
+
+            for (let i = 0; i < pathParts.length; i++) {
+                if (languageCodes.includes(pathParts[i])) {
+                    hasLanguage = true;
+                    // Add everything after the language code
+                    pathWithoutLang = pathParts.slice(i + 1);
+                    break;
+                }
+            }
+
+            // If no language found, just use the path after repo name
+            if (!hasLanguage) {
+                pathWithoutLang = pathParts.slice(1); // Remove repo name
+            }
+
+            // Build new path
+            const newPath = '/' + lang + '/' + pathWithoutLang.join('/');
+            window.location.href = newPath || '/' + lang + '/';
         }
     </script>
 </body>
