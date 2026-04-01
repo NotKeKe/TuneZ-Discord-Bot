@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: 'en' }}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> {% if page.lang == 'zh-TW' or page.lang == 'zh-CN' %}
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"> {% else %}
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet"> {% endif %}
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="{{ '/' | relative_url }}" class="logo">
+                    <img src="{{ '/assets/icon.png' | relative_url }}" alt="TuneZ Logo" width="40" height="40">
+                    <span>TuneZ</span>
+                </a>
+
+                <nav class="main-nav">
+                    <a href="{{ '/en/' | relative_url }}">Home</a>
+                    <a href="{{ '/en/installation/' | relative_url }}">Installation</a>
+                    <a href="{{ '/en/commands/' | relative_url }}">Commands</a>
+                    <a href="{{ '/en/custom-playlist/' | relative_url }}">Custom Playlist</a>
+                    <a href="{{ '/en/faq/' | relative_url }}">FAQ</a>
+                </nav>
+
+                <div class="language-switcher">
+                    <select id="lang-select" onchange="switchLanguage(this.value)">
+                        <option value="en" {% if page.lang == 'en' %}selected{% endif %}>English</option>
+                        <option value="zh-TW" {% if page.lang == 'zh-TW' %}selected{% endif %}>繁體中文</option>
+                        <option value="zh-CN" {% if page.lang == 'zh-CN' %}selected{% endif %}>简体中文</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            {% if page.breadcrumb %}
+            <nav class="breadcrumb">
+                <a href="{{ '/' | relative_url }}">Home</a> {% for crumb in page.breadcrumb %}
+                <span class="separator">/</span>
+                <a href="{{ crumb.url }}">{{ crumb.title }}</a> {% endfor %}
+            </nav>
+            {% endif %}
+
+            <!-- Page Content -->
+            <article class="page-content">
+                {{ content }}
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-toc">
+                    <h3>On this page</h3>
+                    <nav class="toc-nav">
+                        {% include toc.html html=content %}
+                    </nav>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2024 TuneZ. Built with Jekyll.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/NotKeKe/TuneZ-Discord-Bot" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://discord.com/oauth2/authorize?client_id=990798785489825813" target="_blank">
+                        <i class="fab fa-discord"></i> Invite Bot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ '/assets/js/main.js' | relative_url }}"></script>
+
+    <script>
+        function switchLanguage(lang) {
+            const currentPath = window.location.pathname;
+            // Remove current language prefix
+            const pathWithoutLang = currentPath.replace(/^\/(en|zh-TW|zh-CN)/, '');
+            // Navigate to new language version
+            window.location.href = '/' + lang + pathWithoutLang;
+        }
+    </script>
+</body>
+
+</html>

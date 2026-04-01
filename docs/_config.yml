@@ -1,0 +1,48 @@
+# Jekyll Configuration for TuneZ Discord Bot Documentation
+
+title: TuneZ
+description: A Python-based Discord bot that works out-of-the-box for anyone who needs to play music on Discord.
+
+# Repository configuration
+repository: NotKeKe/TuneZ-Discord-Bot
+
+# Theme - Using a clean documentation theme
+theme: minima
+
+# Markdown processor
+markdown: kramdown
+
+# Highlighter
+highlighter: rouge
+
+# Collections
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+
+# Defaults
+defaults:
+  - scope:
+      path: ""
+      type: docs
+    values:
+      layout: default
+      lang: en
+
+# Plugins
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jemoji
+
+# Languages supported
+languages: ['en', 'zh-TW', 'zh-CN']
+
+# Exclude from processing
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - node_modules
+  - package.json
+  - package-lock.json

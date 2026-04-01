@@ -72,10 +72,18 @@ async def main():
         async with bot:
             await load()
             bot_token = os.getenv('DISCORD_TOKEN')
-            if bot_token is None or bot_token == 'DISCORD_TOKEN':
-                logger.error(f'DISCORD_TOKEN is not set. Please set it in `{str(ENV_PATH)}`.')
+
+            bot_set = False
+            try:
+                await bot.start(bot_token) # type: ignore
+                bot_set = True
+            except discord.errors.LoginFailure:
+                pass
+
+            if not bot_set:
+                logger.error(f'DISCORD_TOKEN is not set or is invalid. Please set it in `{str(ENV_PATH)}`.')
                 exit()
-            await bot.start(bot_token)
+            
     except (KeyboardInterrupt, asyncio.CancelledError): pass
     finally:
         logger.info('Bot is shutting down.')
