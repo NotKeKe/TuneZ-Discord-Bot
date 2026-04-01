@@ -5,9 +5,9 @@ lang: en
 permalink: /en/installation/
 breadcrumb:
   - title: Home
-    url: /en/
+    url: {{ '/en/' | relative_url }}
   - title: Installation
-    url: /en/installation/
+    url: {{ '/en/installation/' | relative_url }}
 ---
 
 # Installation Guide
@@ -15,7 +15,7 @@ breadcrumb:
 This guide will help you set up TuneZ on your own server. Choose the method that best suits your needs.
 
 <div class="callout callout-warning">
-  <strong>⚠️ Prerequisites:</strong> You need to have a Discord Bot token before proceeding. If you don't have one, follow the <a href="/en/installation/#create-discord-bot">Create Discord Bot</a> section first.
+  <strong>⚠️ Prerequisites:</strong> You need to have a Discord Bot token before proceeding. If you don't have one, follow the <a href="{{ '/en/installation/' | relative_url }}#create-discord-bot">Create Discord Bot</a> section first.
 </div>
 
 ---
@@ -287,6 +287,6 @@ After running the bot, a `data/` folder will be created with:
 
 Now that you have TuneZ installed, check out:
 
-- [Commands Reference](/en/commands/) - Learn all available commands
-- [Custom Playlists](/en/custom-playlist/) - Create your own playlists
-- [FAQ](/en/faq/) - Common questions and answers
+- [Commands Reference]({{ '/en/commands/' | relative_url }}) - Learn all available commands
+- [Custom Playlists]({{ '/en/custom-playlist/' | relative_url }}) - Create your own playlists
+- [FAQ]({{ '/en/faq/' | relative_url }}) - Common questions and answers

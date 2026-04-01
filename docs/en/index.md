@@ -87,7 +87,7 @@ For more control and features, host TuneZ yourself:
 2. **Docker**: `docker compose up -d`
 3. **Python**: `uv run main.py`
 
-See [Installation Guide](/en/installation/) for detailed instructions.
+See [Installation Guide]({{ '/en/installation/' | relative_url }}) for detailed instructions.
 
 ---
 
@@ -112,16 +112,16 @@ See [Installation Guide](/en/installation/) for detailed instructions.
 | `/volume [0-200]` | Adjust volume |
 | `/stop` | Stop and leave the voice channel |
 
-[View all commands →](/en/commands/)
+[View all commands →]({{ '/en/commands/' | relative_url }})
 
 ---
 
 ## 📚 Documentation
 
-- [Installation Guide](/en/installation/) - How to set up TuneZ
-- [Command Reference](/en/commands/) - Full list of all commands
-- [Custom Playlists](/en/custom-playlist/) - Create and manage playlists
-- [FAQ](/en/faq/) - Frequently asked questions
+- [Installation Guide]({{ '/en/installation/' | relative_url }}) - How to set up TuneZ
+- [Command Reference]({{ '/en/commands/' | relative_url }}) - Full list of all commands
+- [Custom Playlists]({{ '/en/custom-playlist/' | relative_url }}) - Create and manage playlists
+- [FAQ]({{ '/en/faq/' | relative_url }}) - Frequently asked questions
 
 ---
 

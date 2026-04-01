@@ -5,9 +5,9 @@ lang: zh-CN
 permalink: /zh-CN/installation/
 breadcrumb:
   - title: 首页
-    url: /zh-CN/
+    url: {{ '/zh-CN/' | relative_url }}
   - title: 安装指南
-    url: /zh-CN/installation/
+    url: {{ '/zh-CN/installation/' | relative_url }}
 ---
 
 # 安装指南
@@ -15,7 +15,7 @@ breadcrumb:
 本指南将帮助您在自己的服务器上设定 TuneZ。请选择最适合您的方法。
 
 <div class="callout callout-warning">
-  <strong>⚠️ 前置需求：</strong>在继续之前，您需要有一个 Discord Bot Token。如果您还没有，请先查看<a href="/zh-CN/installation/#创建-discord-bot">创建 Discord Bot</a>章节。
+  <strong>⚠️ 前置需求：</strong>在继续之前，您需要有一个 Discord Bot Token。如果您还没有，请先查看<a href="{{ '/zh-CN/installation/' | relative_url }}#创建-discord-bot">创建 Discord Bot</a>章节。
 </div>
 
 ---
@@ -287,6 +287,6 @@ breadcrumb:
 
 现在您已经安装好 TuneZ 了，请查看：
 
-- [指令列表](/zh-CN/commands/) - 学习所有可用指令
-- [自订播放列表](/zh-CN/custom-playlist/) - 建立您自己的播放列表
-- [常见问题](/zh-CN/faq/) - 常见问题和解答
+- [指令列表]({{ '/zh-CN/commands/' | relative_url }}) - 学习所有可用指令
+- [自订播放列表]({{ '/zh-CN/custom-playlist/' | relative_url }}) - 建立您自己的播放列表
+- [常见问题]({{ '/zh-CN/faq/' | relative_url }}) - 常见问题和解答

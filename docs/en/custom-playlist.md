@@ -5,9 +5,9 @@ lang: en
 permalink: /en/custom-playlist/
 breadcrumb:
   - title: Home
-    url: /en/
+    url: {{ '/en/' | relative_url }}
   - title: Custom Playlists
-    url: /en/custom-playlist/
+    url: {{ '/en/custom-playlist/' | relative_url }}
 ---
 
 # Custom Playlists
@@ -234,5 +234,5 @@ Each playlist is saved as a JSON file containing:
 
 ## 📚 Related
 
-- [Commands Reference](/en/commands/) - All available commands
-- [Installation Guide](/en/installation/) - How to set up TuneZ
+- [Commands Reference]({{ '/en/commands/' | relative_url }}) - All available commands
+- [Installation Guide]({{ '/en/installation/' | relative_url }}) - How to set up TuneZ

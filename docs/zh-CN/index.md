@@ -87,7 +87,7 @@ permalink: /zh-CN/
 2. **Docker**：`docker compose up -d`
 3. **Python**：`uv run main.py`
 
-查看[安装指南](/zh-CN/installation/)获取详细说明。
+查看[安装指南]({{ '/zh-CN/installation/' | relative_url }})获取详细说明。
 
 ---
 
@@ -112,16 +112,16 @@ permalink: /zh-CN/
 | `/volume [0-200]` | 调整音量 |
 | `/stop` | 停止播放并离开语音频道 |
 
-[查看所有指令 →](/zh-CN/commands/)
+[查看所有指令 →]({{ '/zh-CN/commands/' | relative_url }})
 
 ---
 
 ## 📚 文档
 
-- [安装指南](/zh-CN/installation/) - 如何设定 TuneZ
-- [指令列表](/zh-CN/commands/) - 所有指令的完整列表
-- [自订播放列表](/zh-CN/custom-playlist/) - 建立和管理播放列表
-- [常见问题](/zh-CN/faq/) - 疑难解答
+- [安装指南]({{ '/zh-CN/installation/' | relative_url }}) - 如何设定 TuneZ
+- [指令列表]({{ '/zh-CN/commands/' | relative_url }}) - 所有指令的完整列表
+- [自订播放列表]({{ '/zh-CN/custom-playlist/' | relative_url }}) - 建立和管理播放列表
+- [常见问题]({{ '/zh-CN/faq/' | relative_url }}) - 疑难解答
 
 ---
 

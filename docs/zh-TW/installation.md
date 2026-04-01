@@ -5,9 +5,9 @@ lang: zh-TW
 permalink: /zh-TW/installation/
 breadcrumb:
   - title: 主頁
-    url: /zh-TW/
+    url: {{ '/zh-TW/' | relative_url }}
   - title: 安裝指南
-    url: /zh-TW/installation/
+    url: {{ '/zh-TW/installation/' | relative_url }}
 ---
 
 # 安裝指南
@@ -15,7 +15,7 @@ breadcrumb:
 本指南將幫助您在自己的伺服器上設定 TuneZ。請選擇最適合您的方法。
 
 <div class="callout callout-warning">
-  <strong>⚠️ 前置需求：</strong>在繼續之前，您需要有一個 Discord Bot Token。如果您還沒有，請先查看<a href="/zh-TW/installation/#創建-discord-bot">創建 Discord Bot</a>章節。
+  <strong>⚠️ 前置需求：</strong>在繼續之前，您需要有一個 Discord Bot Token。如果您還沒有，請先查看<a href="{{ '/zh-TW/installation/' | relative_url }}#創建-discord-bot">創建 Discord Bot</a>章節。
 </div>
 
 ---
@@ -287,6 +287,6 @@ breadcrumb:
 
 現在您已經安裝好 TuneZ了，請查看：
 
-- [指令列表](/zh-TW/commands/) - 學習所有可用指令
-- [自訂播放清單](/zh-TW/custom-playlist/) - 建立您自己的播放清單
-- [常見問題](/zh-TW/faq/) - 常見問題和解答
+- [指令列表]({{ '/zh-TW/commands/' | relative_url }}) - 學習所有可用指令
+- [自訂播放清單]({{ '/zh-TW/custom-playlist/' | relative_url }}) - 建立您自己的播放清單
+- [常見問題]({{ '/zh-TW/faq/' | relative_url }}) - 常見問題和解答

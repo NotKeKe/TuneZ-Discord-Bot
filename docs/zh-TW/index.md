@@ -87,7 +87,7 @@ permalink: /zh-TW/
 2. **Docker**：`docker compose up -d`
 3. **Python**：`uv run main.py`
 
-查看[安裝指南](/zh-TW/installation/)獲取詳細說明。
+查看[安裝指南]({{ '/zh-TW/installation/' | relative_url }})獲取詳細說明。
 
 ---
 
@@ -112,16 +112,16 @@ permalink: /zh-TW/
 | `/volume [0-200]` | 調整音量 |
 | `/stop` | 停止播放並離開語音頻道 |
 
-[查看所有指令 →](/zh-TW/commands/)
+[查看所有指令 →]({{ '/zh-TW/commands/' | relative_url }})
 
 ---
 
 ## 📚 文件
 
-- [安裝指南](/zh-TW/installation/) - 如何設定 TuneZ
-- [指令列表](/zh-TW/commands/) - 所有指令的完整列表
-- [自訂播放清單](/zh-TW/custom-playlist/) - 建立和管理播放清單
-- [常見問題](/zh-TW/faq/) - 疑難解答
+- [安裝指南]({{ '/zh-TW/installation/' | relative_url }}) - 如何設定 TuneZ
+- [指令列表]({{ '/zh-TW/commands/' | relative_url }}) - 所有指令的完整列表
+- [自訂播放清單]({{ '/zh-TW/custom-playlist/' | relative_url }}) - 建立和管理播放清單
+- [常見問題]({{ '/zh-TW/faq/' | relative_url }}) - 疑難解答
 
 ---
 

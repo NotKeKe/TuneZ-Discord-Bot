@@ -5,9 +5,9 @@ lang: en
 permalink: /en/commands/
 breadcrumb:
   - title: Home
-    url: /en/
+    url: {{ '/en/' | relative_url }}
   - title: Commands
-    url: /en/commands/
+    url: {{ '/en/commands/' | relative_url }}
 ---
 
 # Command Reference
@@ -270,7 +270,7 @@ When playing music, you can use the interactive buttons:
 
 ## 📝 Custom Playlists
 
-See the [Custom Playlist Guide](/en/custom-playlist/) for detailed information.
+See the [Custom Playlist Guide]({{ '/en/custom-playlist/' | relative_url }}) for detailed information.
 
 | Command | Description |
 |---------|-------------|
