@@ -27,11 +27,22 @@
                 </a>
 
                 <nav class="main-nav">
+                    {% if page.lang == 'zh-TW' %}
+                    <a href="{{ '/zh-TW/' | relative_url }}">主頁</a>
+                    <a href="{{ '/zh-TW/installation/' | relative_url }}">安裝指南</a>
+                    <a href="{{ '/zh-TW/commands/' | relative_url }}">指令列表</a>
+                    <a href="{{ '/zh-TW/custom-playlist/' | relative_url }}">自訂播放清單</a>
+                    <a href="{{ '/zh-TW/faq/' | relative_url }}">常見問題</a> {% elsif page.lang == 'zh-CN' %}
+                    <a href="{{ '/zh-CN/' | relative_url }}">首页</a>
+                    <a href="{{ '/zh-CN/installation/' | relative_url }}">安装指南</a>
+                    <a href="{{ '/zh-CN/commands/' | relative_url }}">指令列表</a>
+                    <a href="{{ '/zh-CN/custom-playlist/' | relative_url }}">自订播放列表</a>
+                    <a href="{{ '/zh-CN/faq/' | relative_url }}">常见问题</a> {% else %}
                     <a href="{{ '/en/' | relative_url }}">Home</a>
                     <a href="{{ '/en/installation/' | relative_url }}">Installation</a>
                     <a href="{{ '/en/commands/' | relative_url }}">Commands</a>
                     <a href="{{ '/en/custom-playlist/' | relative_url }}">Custom Playlist</a>
-                    <a href="{{ '/en/faq/' | relative_url }}">FAQ</a>
+                    <a href="{{ '/en/faq/' | relative_url }}">FAQ</a> {% endif %}
                 </nav>
 
                 <div class="language-switcher">
@@ -51,7 +62,10 @@
             <!-- Breadcrumb -->
             {% if page.breadcrumb %}
             <nav class="breadcrumb">
-                <a href="{{ '/' | relative_url }}">Home</a> {% for crumb in page.breadcrumb %}
+                {% if page.lang == 'zh-TW' %}
+                <a href="{{ '/zh-TW/' | relative_url }}">主頁</a> {% elsif page.lang == 'zh-CN' %}
+                <a href="{{ '/zh-CN/' | relative_url }}">首页</a> {% else %}
+                <a href="{{ '/en/' | relative_url }}">Home</a> {% endif %} {% for crumb in page.breadcrumb %}
                 <span class="separator">/</span>
                 <a href="{{ crumb.url }}">{{ crumb.title }}</a> {% endfor %}
             </nav>
@@ -65,6 +79,25 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <div class="sidebar-toc">
+                    {% if page.lang == 'zh-TW' %}
+                    <h3>快速連結</h3>
+                    <nav class="toc-nav">
+                        <a href="{{ '/zh-TW/' | relative_url }}">主頁</a>
+                        <a href="{{ '/zh-TW/installation/' | relative_url }}">安裝指南</a>
+                        <a href="{{ '/zh-TW/commands/' | relative_url }}">指令列表</a>
+                        <a href="{{ '/zh-TW/custom-playlist/' | relative_url }}">自訂播放清單</a>
+                        <a href="{{ '/zh-TW/faq/' | relative_url }}">常見問題</a>
+                    </nav>
+                    {% elsif page.lang == 'zh-CN' %}
+                    <h3>快速连结</h3>
+                    <nav class="toc-nav">
+                        <a href="{{ '/zh-CN/' | relative_url }}">首页</a>
+                        <a href="{{ '/zh-CN/installation/' | relative_url }}">安装指南</a>
+                        <a href="{{ '/zh-CN/commands/' | relative_url }}">指令列表</a>
+                        <a href="{{ '/zh-CN/custom-playlist/' | relative_url }}">自订播放列表</a>
+                        <a href="{{ '/zh-CN/faq/' | relative_url }}">常见问题</a>
+                    </nav>
+                    {% else %}
                     <h3>Quick Links</h3>
                     <nav class="toc-nav">
                         <a href="{{ '/en/' | relative_url }}">Home</a>
@@ -73,6 +106,7 @@
                         <a href="{{ '/en/custom-playlist/' | relative_url }}">Custom Playlist</a>
                         <a href="{{ '/en/faq/' | relative_url }}">FAQ</a>
                     </nav>
+                    {% endif %}
                 </div>
             </aside>
         </div>
