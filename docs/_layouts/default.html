@@ -65,9 +65,13 @@
             <!-- Sidebar -->
             <aside class="sidebar">
                 <div class="sidebar-toc">
-                    <h3>On this page</h3>
+                    <h3>Quick Links</h3>
                     <nav class="toc-nav">
-                        {% include toc.html html=content %}
+                        <a href="{{ '/en/' | relative_url }}">Home</a>
+                        <a href="{{ '/en/installation/' | relative_url }}">Installation</a>
+                        <a href="{{ '/en/commands/' | relative_url }}">Commands</a>
+                        <a href="{{ '/en/custom-playlist/' | relative_url }}">Custom Playlist</a>
+                        <a href="{{ '/en/faq/' | relative_url }}">FAQ</a>
                     </nav>
                 </div>
             </aside>
