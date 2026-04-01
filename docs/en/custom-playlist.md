@@ -5,9 +5,9 @@ lang: en
 permalink: /en/custom-playlist/
 breadcrumb:
   - title: Home
-    url: {{ '/en/' | relative_url }}
+    url: /en/
   - title: Custom Playlists
-    url: {{ '/en/custom-playlist/' | relative_url }}
+    url: /en/custom-playlist/
 ---
 
 # Custom Playlists

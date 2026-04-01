@@ -5,9 +5,9 @@ lang: en
 permalink: /en/installation/
 breadcrumb:
   - title: Home
-    url: {{ '/en/' | relative_url }}
+    url: /en/
   - title: Installation
-    url: {{ '/en/installation/' | relative_url }}
+    url: /en/installation/
 ---
 
 # Installation Guide

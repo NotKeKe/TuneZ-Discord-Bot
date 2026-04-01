@@ -5,9 +5,9 @@ lang: zh-CN
 permalink: /zh-CN/installation/
 breadcrumb:
   - title: 首页
-    url: {{ '/zh-CN/' | relative_url }}
+    url: /zh-CN/
   - title: 安装指南
-    url: {{ '/zh-CN/installation/' | relative_url }}
+    url: /zh-CN/installation/
 ---
 
 # 安装指南

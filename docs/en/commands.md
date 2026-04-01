@@ -5,9 +5,9 @@ lang: en
 permalink: /en/commands/
 breadcrumb:
   - title: Home
-    url: {{ '/en/' | relative_url }}
+    url: /en/
   - title: Commands
-    url: {{ '/en/commands/' | relative_url }}
+    url: /en/commands/
 ---
 
 # Command Reference

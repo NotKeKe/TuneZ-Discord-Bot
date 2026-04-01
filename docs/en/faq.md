@@ -5,9 +5,9 @@ lang: en
 permalink: /en/faq/
 breadcrumb:
   - title: Home
-    url: {{ '/en/' | relative_url }}
+    url: /en/
   - title: FAQ
-    url: {{ '/en/faq/' | relative_url }}
+    url: /en/faq/
 ---
 
 # Frequently Asked Questions

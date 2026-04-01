@@ -5,9 +5,9 @@ lang: zh-TW
 permalink: /zh-TW/installation/
 breadcrumb:
   - title: 主頁
-    url: {{ '/zh-TW/' | relative_url }}
+    url: /zh-TW/
   - title: 安裝指南
-    url: {{ '/zh-TW/installation/' | relative_url }}
+    url: /zh-TW/installation/
 ---
 
 # 安裝指南
