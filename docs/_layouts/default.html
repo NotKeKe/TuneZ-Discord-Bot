@@ -105,31 +105,29 @@
             const currentPath = window.location.pathname;
 
             // Extract the repository name from the path
-            // e.g., /TuneZ-Discord-Bot/en/commands -> /en/commands
-            const pathParts = currentPath.split('/').filter(Boolean);
-
-            // Find if there's a language code in the path
+            // e.g., /TuneZ-Discord-Bot/en/commands -> /TuneZ-Discord-Bot/zh-TW/commands
             const languageCodes = ['en', 'zh-TW', 'zh-CN'];
-            let hasLanguage = false;
-            let pathWithoutLang = [];
 
-            for (let i = 0; i < pathParts.length; i++) {
-                if (languageCodes.includes(pathParts[i])) {
-                    hasLanguage = true;
-                    // Add everything after the language code
-                    pathWithoutLang = pathParts.slice(i + 1);
-                    break;
+            // Match patterns like /en/ or /zh-TW/ at the start
+            const langPattern = /^\/([^\/]+)(\/en\/|\/zh-TW\/|\/zh-CN\/)/;
+            const match = currentPath.match(langPattern);
+
+            if (match) {
+                // We have a language in the URL, replace it
+                const repoName = match[1];
+                const newPath = '/' + repoName + '/' + lang + '/';
+                window.location.href = newPath;
+            } else {
+                // No language found, just go to the language root
+                // e.g., /TuneZ-Discord-Bot/ -> /TuneZ-Discord-Bot/en/
+                const pathParts = currentPath.split('/').filter(Boolean);
+                if (pathParts.length > 0) {
+                    const repoName = pathParts[0];
+                    window.location.href = '/' + repoName + '/' + lang + '/';
+                } else {
+                    window.location.href = '/' + lang + '/';
                 }
             }
-
-            // If no language found, just use the path after repo name
-            if (!hasLanguage) {
-                pathWithoutLang = pathParts.slice(1); // Remove repo name
-            }
-
-            // Build new path
-            const newPath = '/' + lang + '/' + pathWithoutLang.join('/');
-            window.location.href = newPath || '/' + lang + '/';
         }
     </script>
 </body>
