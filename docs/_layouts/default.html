@@ -138,27 +138,27 @@
         function switchLanguage(lang) {
             const currentPath = window.location.pathname;
 
-            // Extract the repository name from the path
-            // e.g., /TuneZ-Discord-Bot/en/commands -> /TuneZ-Discord-Bot/zh-TW/commands
-            const languageCodes = ['en', 'zh-TW', 'zh-CN'];
+            // Language codes to match
+            const langPattern = /^\/(en|zh-TW|zh-CN)(\/|$)/;
 
-            // Match patterns like /en/ or /zh-TW/ at the start
-            const langPattern = /^\/([^\/]+)(\/en\/|\/zh-TW\/|\/zh-CN\/)/;
-            const match = currentPath.match(langPattern);
+            // Check if path starts with a language code (local development)
+            const langMatch = currentPath.match(langPattern);
 
-            if (match) {
-                // We have a language in the URL, replace it
-                const repoName = match[1];
-                const newPath = '/' + repoName + '/' + lang + '/';
-                window.location.href = newPath;
+            if (langMatch) {
+                // Path starts with language code (no baseurl or local development)
+                // e.g., /en/faq -> /zh-TW/faq
+                const afterLang = currentPath.substring(langMatch[0].length);
+                window.location.href = '/' + lang + afterLang;
             } else {
-                // No language found, just go to the language root
-                // e.g., /TuneZ-Discord-Bot/ -> /TuneZ-Discord-Bot/en/
-                const pathParts = currentPath.split('/').filter(Boolean);
-                if (pathParts.length > 0) {
-                    const repoName = pathParts[0];
-                    window.location.href = '/' + repoName + '/' + lang + '/';
+                // Path has a prefix (likely repository name) before language
+                // e.g., /TuneZ-Discord-Bot/en/faq -> /TuneZ-Discord-Bot/zh-TW/faq
+                const prefixPattern = /^(\/[^/]+)(\/en\/|\/zh-TW\/|\/zh-CN\/)/;
+                const prefixMatch = currentPath.match(prefixPattern);
+
+                if (prefixMatch) {
+                    window.location.href = prefixMatch[1] + '/' + lang + '/';
                 } else {
+                    // No language found, just go to language root
                     window.location.href = '/' + lang + '/';
                 }
             }

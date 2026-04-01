@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Python-based Discord bot that works out-of-the-box for anyone who needs to play music on Discord.">
+    <title>自訂播放清單 - TuneZ</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/icon.png" alt="TuneZ Logo" width="40" height="40">
+                    <span>TuneZ</span>
+                </a>
+
+                <nav class="main-nav">
+                    
+                    <a href="/zh-TW/">主頁</a>
+                    <a href="/zh-TW/installation/">安裝指南</a>
+                    <a href="/zh-TW/commands/">指令列表</a>
+                    <a href="/zh-TW/custom-playlist/">自訂播放清單</a>
+                    <a href="/zh-TW/faq/">常見問題</a> 
+                </nav>
+
+                <div class="language-switcher">
+                    <select id="lang-select" onchange="switchLanguage(this.value)">
+                        <option value="en" >English</option>
+                        <option value="zh-TW" selected>繁體中文</option>
+                        <option value="zh-CN" >简体中文</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            
+            <nav class="breadcrumb">
+                
+                <a href="/zh-TW/">主頁</a>  
+                <span class="separator">/</span>
+                <a href="/zh-TW/">主頁</a> 
+                <span class="separator">/</span>
+                <a href="/zh-TW/custom-playlist/">自訂播放清單</a> 
+            </nav>
+            
+
+            <!-- Page Content -->
+            <article class="page-content">
+                <h1 id="自訂播放清單">自訂播放清單</h1>
+
+<p>建立和管理您自己的播放清單，隨時隨地播放！</p>
+
+<div class="callout callout-info">
+  <strong>💡 說明：</strong>自訂播放清單會被永久儲存。與一般播放清單不同，它們會被保存，可以在不同會話中使用。
+</div>
+
+<hr />
+
+<h2 id="-可用指令">📚 可用指令</h2>
+
+<h3 id="play_custom_list">/play_custom_list</h3>
+
+<p>播放已儲存的自訂播放清單。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/play_custom_list [清單名稱]</code></td>
+      <td>播放播放清單</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$play_custom_list [清單名稱]</code></td>
+      <td>同上</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>參數：</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>參數</th>
+      <th>類型</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_name</code></td>
+      <td>字串</td>
+      <td>您的播放清單名稱</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>範例：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/play_custom_list 我的最愛
+/play_custom_list 輕鬆音樂
+</code></pre></div></div>
+
+<div class="callout callout-warning">
+  <strong>⚠️ 注意：</strong>如果機器人正在播放音樂，您必須先停止才能播放自訂播放清單。
+</div>
+
+<hr />
+
+<h3 id="add_custom_list">/add_custom_list</h3>
+
+<p>將歌曲加入到自訂播放清單。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/add_custom_list [網址] [清單名稱]</code></td>
+      <td>將歌曲加入播放清單</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>參數：</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>參數</th>
+      <th>類型</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">url</code></td>
+      <td>字串</td>
+      <td>歌曲的 YouTube 網址</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_name</code></td>
+      <td>字串</td>
+      <td>播放清單名稱（如果不存在會自動建立）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>範例：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/add_custom_list https://www.youtube.com/watch?v=dQw4w9WgXcQ 我的最愛
+/add_custom_list https://youtu.be/abc123 我的最愛
+</code></pre></div></div>
+
+<div class="callout callout-info">
+  <strong>💡 提示：</strong>如果播放清單名稱不存在，它會被自動建立！
+</div>
+
+<hr />
+
+<h3 id="show_custom_list">/show_custom_list</h3>
+
+<p>查看播放清單中的所有歌曲。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/show_custom_list [清單名稱]</code></td>
+      <td>顯示播放清單</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>參數：</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>參數</th>
+      <th>類型</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_name</code></td>
+      <td>字串</td>
+      <td>您的播放清單名稱</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>範例：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/show_custom_list 我的最愛
+</code></pre></div></div>
+
+<hr />
+
+<h3 id="delete_custom_list">/delete_custom_list</h3>
+
+<p>刪除整個播放清單。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/delete_custom_list [清單名稱]</code></td>
+      <td>刪除播放清單</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$delete_custom_list [清單名稱]</code></td>
+      <td>同上</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$del_custom_list [清單名稱]</code></td>
+      <td>簡寫</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>參數：</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>參數</th>
+      <th>類型</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_name</code></td>
+      <td>字串</td>
+      <td>要刪除的播放清單名稱</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="callout callout-danger">
+  <strong>⚠️ 警告：</strong>這將永久刪除整個播放清單及其所有歌曲。系統會要求您確認。
+</div>
+
+<hr />
+
+<h3 id="remove_one_from_custom_list">/remove_one_from_custom_list</h3>
+
+<p>從播放清單中永久移除一首歌曲。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/remove_one_from_custom_list [清單名稱] [編號]</code></td>
+      <td>移除歌曲</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$remove_one_from_custom_list [清單名稱] [編號]</code></td>
+      <td>同上</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">$rm_one_custom_list [清單名稱] [編號]</code></td>
+      <td>簡寫</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>參數：</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>參數</th>
+      <th>類型</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list_name</code></td>
+      <td>字串</td>
+      <td>播放清單名稱</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">index</code></td>
+      <td>整數</td>
+      <td>歌曲編號（從 1 開始）</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>範例：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/remove_one_from_custom_list 我的最愛 1
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-快速教學">📖 快速教學</h2>
+
+<h3 id="建立您的第一個播放清單">建立您的第一個播放清單</h3>
+
+<ol>
+  <li><strong>建立新的播放清單：</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/add_custom_list https://www.youtube.com/watch?v=song1 我的播放清單
+/add_custom_list https://www.youtube.com/watch?v=song2 我的播放清單
+/add_custom_list https://www.youtube.com/watch?v=song3 我的播放清單
+</code></pre></div>    </div>
+  </li>
+  <li><strong>查看您的播放清單：</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/show_custom_list 我的播放清單
+</code></pre></div>    </div>
+  </li>
+  <li><strong>播放您的播放清單：</strong>
+    <div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/play_custom_list 我的播放清單
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="管理您的播放清單">管理您的播放清單</h3>
+
+<p><strong>新增更多歌曲：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/add_custom_list https://www.youtube.com/watch?v=song4 我的播放清單
+</code></pre></div></div>
+
+<p><strong>移除一首歌曲：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/remove_one_from_custom_list 我的播放清單 2
+</code></pre></div></div>
+
+<p><strong>刪除播放清單：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>/delete_custom_list 我的播放清單
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-指令總覽">📊 指令總覽</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>指令</th>
+      <th>說明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/play_custom_list [名稱]</code></td>
+      <td>播放自訂播放清單</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/add_custom_list [網址] [名稱]</code></td>
+      <td>將歌曲加入播放清單</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/show_custom_list [名稱]</code></td>
+      <td>顯示播放清單內容</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/delete_custom_list [名稱]</code></td>
+      <td>刪除整個播放清單</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">/remove_one_from_custom_list [名稱] [編號]</code></td>
+      <td>移除一首歌曲</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-資料儲存">💾 資料儲存</h2>
+
+<p>自訂播放清單會儲存在 <code class="language-plaintext highlighter-rouge">data/</code> 目錄中：</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>data/
+└── custom_lists/
+    ├── 我的播放清單.json
+    ├── 搖滾歌曲.json
+    └── ...
+</code></pre></div></div>
+
+<p>每個播放清單都儲存為 JSON 檔案，包含：</p>
+<ul>
+  <li>播放清單名稱</li>
+  <li>歌曲列表（標題、網址、加入日期）</li>
+  <li>擁有者 ID</li>
+</ul>
+
+<div class="callout callout-info">
+  <strong>🔒 隱私：</strong>只有建立播放清單的使用者可以查看、修改或刪除它。
+</div>
+
+<hr />
+
+<h2 id="-疑難排解">🔧 疑難排解</h2>
+
+<p>###「找不到播放清單」</p>
+
+<ul>
+  <li>請確認您輸入的播放清單名稱正確</li>
+  <li>使用 <code class="language-plaintext highlighter-rouge">/show_custom_list [名稱]</code> 查看您的播放清單</li>
+</ul>
+
+<p>###「正在播放」</p>
+
+<ul>
+  <li>先使用 <code class="language-plaintext highlighter-rouge">/stop</code> 停止目前的音樂</li>
+  <li>然後使用 <code class="language-plaintext highlighter-rouge">/play_custom_list [名稱]</code></li>
+</ul>
+
+<h3 id="無法刪除播放清單">無法刪除播放清單</h3>
+
+<ul>
+  <li>只有播放清單的擁有者（建立者）可以刪除它</li>
+  <li>請確認您使用正確的播放清單名稱</li>
+</ul>
+
+<hr />
+
+<h2 id="-相關連結">📚 相關連結</h2>
+
+<ul>
+  <li><a href="/zh-TW/commands/">指令列表</a> - 所有可用指令</li>
+  <li><a href="/zh-TW/installation/">安裝指南</a> - 如何設定 TuneZ</li>
+</ul>
+
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-toc">
+                    
+                    <h3>快速連結</h3>
+                    <nav class="toc-nav">
+                        <a href="/zh-TW/">主頁</a>
+                        <a href="/zh-TW/installation/">安裝指南</a>
+                        <a href="/zh-TW/commands/">指令列表</a>
+                        <a href="/zh-TW/custom-playlist/">自訂播放清單</a>
+                        <a href="/zh-TW/faq/">常見問題</a>
+                    </nav>
+                    
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2024 TuneZ. Built with Jekyll.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/NotKeKe/TuneZ-Discord-Bot" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://discord.com/oauth2/authorize?client_id=990798785489825813" target="_blank">
+                        <i class="fab fa-discord"></i> Invite Bot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        function switchLanguage(lang) {
+            const currentPath = window.location.pathname;
+
+            // Language codes to match
+            const langPattern = /^\/(en|zh-TW|zh-CN)(\/|$)/;
+
+            // Check if path starts with a language code (local development)
+            const langMatch = currentPath.match(langPattern);
+
+            if (langMatch) {
+                // Path starts with language code (no baseurl or local development)
+                // e.g., /en/faq -> /zh-TW/faq
+                const afterLang = currentPath.substring(langMatch[0].length);
+                window.location.href = '/' + lang + afterLang;
+            } else {
+                // Path has a prefix (likely repository name) before language
+                // e.g., /TuneZ-Discord-Bot/en/faq -> /TuneZ-Discord-Bot/zh-TW/faq
+                const prefixPattern = /^(\/[^/]+)(\/en\/|\/zh-TW\/|\/zh-CN\/)/;
+                const prefixMatch = currentPath.match(prefixPattern);
+
+                if (prefixMatch) {
+                    window.location.href = prefixMatch[1] + '/' + lang + '/';
+                } else {
+                    // No language found, just go to language root
+                    window.location.href = '/' + lang + '/';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

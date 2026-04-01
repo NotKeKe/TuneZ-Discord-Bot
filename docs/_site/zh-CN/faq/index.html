@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A Python-based Discord bot that works out-of-the-box for anyone who needs to play music on Discord.">
+    <title>常见问题 - TuneZ</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet"> 
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <img src="/assets/icon.png" alt="TuneZ Logo" width="40" height="40">
+                    <span>TuneZ</span>
+                </a>
+
+                <nav class="main-nav">
+                    
+                    <a href="/zh-CN/">首页</a>
+                    <a href="/zh-CN/installation/">安装指南</a>
+                    <a href="/zh-CN/commands/">指令列表</a>
+                    <a href="/zh-CN/custom-playlist/">自订播放列表</a>
+                    <a href="/zh-CN/faq/">常见问题</a> 
+                </nav>
+
+                <div class="language-switcher">
+                    <select id="lang-select" onchange="switchLanguage(this.value)">
+                        <option value="en" >English</option>
+                        <option value="zh-TW" >繁體中文</option>
+                        <option value="zh-CN" selected>简体中文</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Breadcrumb -->
+            
+            <nav class="breadcrumb">
+                
+                <a href="/zh-CN/">首页</a>  
+                <span class="separator">/</span>
+                <a href="/zh-CN/">首页</a> 
+                <span class="separator">/</span>
+                <a href="/zh-CN/faq/">常见问题</a> 
+            </nav>
+            
+
+            <!-- Page Content -->
+            <article class="page-content">
+                <h1 id="常见问题">常见问题</h1>
+
+<p>关于 TuneZ 的常见问题和解答。</p>
+
+<hr />
+
+<h2 id="-基本问题">❓ 基本问题</h2>
+
+<h3 id="什么是-tunez">什么是 TuneZ？</h3>
+
+<p>TuneZ 是一个基于 Python 的 Discord 音乐机器人，可以让您，在 Discord 语音频道中播放 YouTube 音乐。它具有播放列表管理、循环模式和自订播放列表等功能，开箱即用。</p>
+
+<h3 id="tunez-与其他音乐机器人有什么不同">TuneZ 与其他音乐机器人有什么不同？</h3>
+
+<ul>
+  <li><strong>开箱即用</strong>：最少设定即可运作</li>
+  <li><strong>自建主机</strong>：您可以控制自己的机器人和资料</li>
+  <li><strong>自订表情符号</strong>：内置精美的动画表情符号，可自由定制</li>
+  <li><strong>多语言支持</strong>：支持英文、繁体中文和简体中文</li>
+</ul>
+
+<h3 id="使用-tunez-需要付费吗">使用 TuneZ 需要付费吗？</h3>
+
+<p>不需要，TuneZ 完全免费且开源，采用 Apache License 2.0 授权。</p>
+
+<hr />
+
+<h2 id="-安装与设定">🔧 安装与设定</h2>
+
+<h3 id="执行-tunez-需要什么">执行 TuneZ 需要什么？</h3>
+
+<ul>
+  <li>Discord Bot Token（可从 Discord 开发者入口网站免费取得）</li>
+  <li>以下任一环境：
+    <ul>
+      <li>Windows 电脑（使用 .exe 方法）</li>
+      <li>已安装 Docker（使用 Docker 方法）</li>
+      <li>Python 3.10+（使用 uv 方法）</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="我没有-discord-bot-token要如何取得">我没有 Discord Bot Token，要如何取得？</h3>
+
+<ol>
+  <li>前往 <a href="https://discord.com/developers/applications">Discord 开发者入口网站</a></li>
+  <li>点击「New Application」并命名</li>
+  <li>在左侧边栏点击「Bot」</li>
+  <li>点击「Add Bot」并确认</li>
+  <li>复制您的 Token（如需重置，点击「Reset Token」）</li>
+  <li>在「Privileged Gateway Intents」下启用：
+    <ul>
+      <li>PRESENCE INTENT</li>
+      <li>SERVER MEMBERS INTENT</li>
+      <li>MESSAGE CONTENT INTENT</li>
+    </ul>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="-音乐播放">🎵 音乐播放</h2>
+
+<h3 id="为什么音乐无法播放">为什么音乐无法播放？</h3>
+
+<p>检查以下常见问题：</p>
+
+<ol>
+  <li><strong>不在语音频道中</strong>：您必须在语音频道中才能使用音乐指令</li>
+  <li><strong>机器人不在语音频道</strong>：机器人需要连接和说话的权限</li>
+  <li><strong>无效的网址</strong>：请确认 YouTube 网址正确且可存取</li>
+  <li><strong>内容被封锁</strong>：某些影片可能受到地区限制或已被移除</li>
+</ol>
+
+<h3 id="可以播放-youtube-播放列表吗">可以播放 YouTube 播放列表吗？</h3>
+
+<p>可以！使用 <code class="language-plaintext highlighter-rouge">/play</code> 或 <code class="language-plaintext highlighter-rouge">/add</code> 时，您可以贴上 YouTube 播放列表网址。</p>
+
+<h3 id="tunez-支持-spotifyapple-music-吗">TuneZ 支持 Spotify/Apple Music 吗？</h3>
+
+<p>目前 TuneZ 仅直接支持 YouTube。但是您可以：</p>
+<ul>
+  <li>找到歌曲的 YouTube 连结</li>
+  <li>使用 YouTube 网址建立自订播放列表</li>
+</ul>
+
+<hr />
+
+<h2 id="-循环与播放列表">🔁 循环与播放列表</h2>
+
+<h3 id="循环模式有什么不同">循环模式有什么不同？</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>模式</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">none</code></td>
+      <td>不循环 - 播放列表播放一次</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">single</code></td>
+      <td>循环当前的歌曲</td>
+    </tr>
+    <tr>
+      <td><code class="language-plaintext highlighter-rouge">list</code></td>
+      <td>循环整个播放列表</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="我可以从播放列表中移除歌曲吗">我可以从播放列表中移除歌曲吗？</h3>
+
+<p>可以！使用 <code class="language-plaintext highlighter-rouge">/remove [编号]</code>，其中编号是歌曲在播放列表中的位置（可用 <code class="language-plaintext highlighter-rouge">/queue</code> 查看）。</p>
+
+<hr />
+
+<h2 id="-自订功能">🎨 自订功能</h2>
+
+<h3 id="可以使用自己的表情符号吗">可以使用自己的表情符号吗？</h3>
+
+<p>可以！将您的自订表情符号图片放在：</p>
+<ul>
+  <li><strong>Windows</strong>：<code class="language-plaintext highlighter-rouge">C:\Users\USERNAME\AppData\Roaming\Easy Music Bot\data\emojis</code></li>
+  <li><strong>其他环境</strong>：<code class="language-plaintext highlighter-rouge">./data/emojis/</code></li>
+</ul>
+
+<p>然后使用 <code class="language-plaintext highlighter-rouge">/reload_emojis custom</code> 来载入。</p>
+
+<div class="callout callout-info">
+  <strong>📝 档案命名：</strong>图片档案名（不含副档名）必须与 `assets/emojis/` 中的表情符号名称相符。例如：`list.gif` → `list.png`
+</div>
+
+<hr />
+
+<h2 id="️-隐私与安全">🛡️ 隐私与安全</h2>
+
+<h3 id="我的资料安全吗">我的资料安全吗？</h3>
+
+<ul>
+  <li><strong>自建主机</strong>：您的资料会留在您自己的服务器上</li>
+  <li><strong>自订播放列表</strong>：储存在本机的 <code class="language-plaintext highlighter-rouge">data/</code> 资料夹中</li>
+  <li><strong>URL 快取</strong>：用于加快播放速度的临时储存</li>
+</ul>
+
+<h3 id="关于-bot-token">关于 Bot Token？</h3>
+
+<ul>
+  <li>千万不要分享您的 Bot Token</li>
+  <li>如果外泄，请立即从 Discord 开发者入口网站重新产生</li>
+  <li>Token 只允许控制您的机器人，无法存取您的 Discord 帐号</li>
+</ul>
+
+<hr />
+
+<h2 id="-疑难排解">🐛 疑难排解</h2>
+
+<h3 id="机器人无法启动">机器人无法启动</h3>
+
+<ol>
+  <li>检查 <code class="language-plaintext highlighter-rouge">.env</code> 中的 <code class="language-plaintext highlighter-rouge">DISCORD_TOKEN</code> 是否正确</li>
+  <li>确认所有 intents 都已启用</li>
+  <li>查看主控台中的错误讯息</li>
+</ol>
+
+<h3 id="机器人已加入语音频道但没有声音">机器人已加入语音频道但没有声音</h3>
+
+<ol>
+  <li>检查机器人是否有「连接」和「说话」权限</li>
+  <li>确认 FFmpeg 已安装（音频解码所需）</li>
+  <li>尝试使用 <code class="language-plaintext highlighter-rouge">/volume</code> 增加音量</li>
+</ol>
+
+<h3 id="指令没有作用">指令没有作用</h3>
+
+<ol>
+  <li>确认您使用的是正确的格式（<code class="language-plaintext highlighter-rouge">/指令</code> 或 <code class="language-plaintext highlighter-rouge">$指令</code>）</li>
+  <li>检查您是否需要在语音频道中</li>
+  <li>尝试重新启动机器人</li>
+</ol>
+
+<hr />
+
+<h2 id="-取得帮助">💬 取得帮助</h2>
+
+<h3 id="我可以在哪里获得支持">我可以在哪里获得支持？</h3>
+
+<ul>
+  <li><strong>GitHub Issues</strong>：<a href="https://github.com/NotKeKe/TuneZ-Discord-Bot/issues">回报错误</a></li>
+  <li><strong>Discord</strong>：加入我们的社群获取帮助</li>
+</ul>
+
+<h3 id="如何回报错误">如何回报错误？</h3>
+
+<p>请在 GitHub 上开启 issue，包含：</p>
+<ol>
+  <li>您的作业系统</li>
+  <li>您如何安装 TuneZ（exe/docker/uv）</li>
+  <li>准确的错误讯息</li>
+  <li>重现问题的步骤</li>
+</ol>
+
+<hr />
+
+<h2 id="-授权">📄 授权</h2>
+
+<p>TuneZ 采用 Apache License 2.0 授权。您可以：</p>
+<ul>
+  <li>✅ 将其用于个人或商业目的</li>
+  <li>✅ 修改和自订</li>
+  <li>✅ 分发</li>
+</ul>
+
+<p>详见 <a href="https://github.com/NotKeKe/TuneZ-Discord-Bot/blob/main/LICENSE">LICENSE</a>。</p>
+
+            </article>
+
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <div class="sidebar-toc">
+                    
+                    <h3>快速连结</h3>
+                    <nav class="toc-nav">
+                        <a href="/zh-CN/">首页</a>
+                        <a href="/zh-CN/installation/">安装指南</a>
+                        <a href="/zh-CN/commands/">指令列表</a>
+                        <a href="/zh-CN/custom-playlist/">自订播放列表</a>
+                        <a href="/zh-CN/faq/">常见问题</a>
+                    </nav>
+                    
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <p>&copy; 2024 TuneZ. Built with Jekyll.</p>
+                </div>
+                <div class="footer-links">
+                    <a href="https://github.com/NotKeKe/TuneZ-Discord-Bot" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://discord.com/oauth2/authorize?client_id=990798785489825813" target="_blank">
+                        <i class="fab fa-discord"></i> Invite Bot
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="/assets/js/main.js"></script>
+
+    <script>
+        function switchLanguage(lang) {
+            const currentPath = window.location.pathname;
+
+            // Language codes to match
+            const langPattern = /^\/(en|zh-TW|zh-CN)(\/|$)/;
+
+            // Check if path starts with a language code (local development)
+            const langMatch = currentPath.match(langPattern);
+
+            if (langMatch) {
+                // Path starts with language code (no baseurl or local development)
+                // e.g., /en/faq -> /zh-TW/faq
+                const afterLang = currentPath.substring(langMatch[0].length);
+                window.location.href = '/' + lang + afterLang;
+            } else {
+                // Path has a prefix (likely repository name) before language
+                // e.g., /TuneZ-Discord-Bot/en/faq -> /TuneZ-Discord-Bot/zh-TW/faq
+                const prefixPattern = /^(\/[^/]+)(\/en\/|\/zh-TW\/|\/zh-CN\/)/;
+                const prefixMatch = currentPath.match(prefixPattern);
+
+                if (prefixMatch) {
+                    window.location.href = prefixMatch[1] + '/' + lang + '/';
+                } else {
+                    // No language found, just go to language root
+                    window.location.href = '/' + lang + '/';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

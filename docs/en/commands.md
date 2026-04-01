@@ -33,6 +33,7 @@ Play music or add a song to the queue.
 | `$p [query]` | Shorthand |
 
 **Parameters:**
+
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `query` | string | Song name, YouTube URL, or playlist URL |
@@ -59,6 +60,7 @@ Add a song to the queue without starting playback.
 | `$add [query]` | Same as above |
 
 **Parameters:**
+
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `query` | string | Song name or YouTube URL |
@@ -133,23 +135,10 @@ Set or toggle the loop mode.
 | `$loop [mode]` | Same as above |
 
 **Parameters:**
+
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `mode` | string | Loop mode: `none`, `single`, or `list` |
-
-**Loop Modes:**
-| Mode | Description |
-|------|-------------|
-| `none` | No looping (default) |
-| `single` | Loop the current song |
-| `list` | Loop the entire queue |
-
-**Example:**
-```
-/loop single    # Loop current song
-/loop list      # Loop entire playlist
-/loop           # Toggle through modes
-```
 
 ---
 
@@ -189,15 +178,10 @@ Remove a specific song from the queue.
 | `$rm [number]` | Shorthand |
 
 **Parameters:**
+
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `number` | integer | Song position in queue (see `/queue`) |
-
-**Example:**
-```
-/queue        # See the queue, songs are numbered 1, 2, 3...
-/remove 2     # Remove the 2nd song
-```
 
 ---
 
@@ -238,6 +222,7 @@ Adjust the volume or show volume controls.
 | `$volume [0-200]` | Same as above |
 
 **Parameters:**
+
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `volume` | integer | Volume level (0-200, default: 100) |
