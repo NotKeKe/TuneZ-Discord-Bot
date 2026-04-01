@@ -12,8 +12,8 @@
 ![Stars](https://img.shields.io/github/stars/NotKeKe/TuneZ-Discord-Bot?style=social)
 
 [![License](https://img.shields.io/badge/license-Apache%20License%202.0-yellow)](LICENSE) <br>
-[![Docs](https://img.shields.io/badge/Docs-繁體中文-blue.svg)](../../README.md) 
-[![Docs](https://img.shields.io/badge/Docs-English-blue.svg)](README_en.md)
+[![Docs](https://img.shields.io/badge/Docs-繁體中文-blue.svg)](README_trad_chinese.md) 
+[![Docs](https://img.shields.io/badge/Docs-English-blue.svg)](README.md)
 
 </div>
 
@@ -144,7 +144,7 @@ TuneZ 有支援中文，只是因为我的 Discord 预设语言是英文，所�
         </ul>
         现在 你应该可以看到它正常启动了<br>
         <strong>用 /play 来开始播放音乐吧</strong>
-        <img src="assets/docs/opened_bot.png">
+        <img src="opened_bot.png">
     </details>
 
 - [Docker](https://www.docker.com/)
