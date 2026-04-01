@@ -34,8 +34,8 @@ jobs:
           cache: 'bundler'
         
       - name: Build Jekyll site
-        # Jekyll build for GitHub Pages with baseurl
-        run: bundle exec jekyll build --baseurl "/TuneZ-Discord-Bot"
+        # Jekyll build for GitHub Pages with dynamic baseurl
+        run: bundle exec jekyll build --baseurl "${{ github.event.repository.name }}"
         env:
           JEKYLL_ENV: production
           

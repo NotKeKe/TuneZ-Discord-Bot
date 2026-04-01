@@ -6,7 +6,8 @@ description: A Python-based Discord bot that works out-of-the-box for anyone who
 # Repository configuration
 repository: NotKeKe/TuneZ-Discord-Bot
 
-# Base URL - Set to the repository name for GitHub Pages subdirectory deployment
+# Base URL - Set to empty, will be overridden by GitHub Actions workflow
+# using --baseurl flag to dynamically set repository name
 baseurl: "/TuneZ-Discord-Bot"
 
 # Markdown processor
