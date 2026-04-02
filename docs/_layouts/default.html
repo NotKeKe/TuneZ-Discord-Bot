@@ -136,32 +136,42 @@
 
     <script>
         function switchLanguage(lang) {
-            const currentPath = window.location.pathname;
+            const langCodes = ['en', 'zh-TW', 'zh-CN'];
+            const {
+                pathname,
+                hostname,
+                origin
+            } = window.location;
 
-            // Language codes to match
-            const langPattern = /^\/(en|zh-TW|zh-CN)(\/|$)/;
+            // 1. 自動偵測 Base Path
+            // 如果網址包含 github.io，則第一段路徑是 Repo 名稱；否則（如 localhost）為空
+            const isGitHubPages = hostname.includes('github.io');
+            const pathSegments = pathname.split('/').filter(p => p);
 
-            // Check if path starts with a language code (local development)
-            const langMatch = currentPath.match(langPattern);
+            let repoName = "";
+            let cleanSegments = [...pathSegments];
 
-            if (langMatch) {
-                // Path starts with language code (no baseurl or local development)
-                // e.g., /en/faq -> /zh-TW/faq
-                const afterLang = currentPath.substring(langMatch[0].length);
-                window.location.href = '/' + lang + '/' + afterLang;
-            } else {
-                // Path has a prefix (likely repository name) before language
-                // e.g., /TuneZ-Discord-Bot/en/faq -> /TuneZ-Discord-Bot/zh-TW/faq
-                const prefixPattern = /^(\/[^/]+)(\/en\/|\/zh-TW\/|\/zh-CN\/)/;
-                const prefixMatch = currentPath.match(prefixPattern);
-
-                if (prefixMatch) {
-                    window.location.href = prefixMatch[1] + '/' + lang + '/' + currentPath.substring(prefixMatch[0].length);
-                } else {
-                    // No language found, just go to language root
-                    window.location.href = '/' + lang + '/';
-                }
+            if (isGitHubPages) {
+                repoName = pathSegments[0]; // 取得 TuneZ-Discord-Bot
+                cleanSegments.shift(); // 暫時移除它，方便處理語系
             }
+
+            // 2. 處理語系切換
+            if (langCodes.includes(cleanSegments[0])) {
+                // 如果目前已經在某個語系路徑下，替換它
+                cleanSegments[0] = lang;
+            } else {
+                // 如果目前在根目錄，將新語系插在最前面
+                cleanSegments.unshift(lang);
+            }
+
+            // 3. 重新組合成完整路徑
+            // 如果是 GitHub Pages，要把 repoName 塞回去
+            const finalSegments = isGitHubPages ? [repoName, ...cleanSegments] : cleanSegments;
+            const newPath = '/' + finalSegments.join('/');
+
+            // 4. 執行跳轉
+            window.location.href = origin + newPath;
         }
     </script>
 </body>
