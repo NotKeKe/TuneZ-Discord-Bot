@@ -4,7 +4,7 @@ title: 指令列表
 lang: zh-CN
 permalink: /zh-CN/commands/
 breadcrumb:
-  - title: 首页
+  - title: 主页
     url: /zh-CN/
   - title: 指令列表
     url: /zh-CN/commands/
@@ -15,26 +15,22 @@ breadcrumb:
 TuneZ 所有可用指令的完整列表。
 
 <div class="callout callout-info">
-  <strong>💡 说明：</strong>所有指令都可以使用斜线指令（`/`）或前缀（`$`）格式。范例中会显示两种格式。
+  <strong>💡 说明：</strong>
+  <ul>
+    <li>所有指令都可以使用斜线指令（`/`）或前缀（`$`）格式。范例中会显示两种格式。</li>
+    <li>大多数指令都有中文翻译。</li>
+  </ul>
 </div>
 
 ---
 
-## 📖 前言
+## 📖 名词定义
 
-<details>
-<summary><strong>为什么要做这个？</strong></summary>
-
-前阵子有个朋友跟我要了[音汐](https://github.com/NotKeKe/Discord-Bot-YinXi)，我后来看了[YEE式机器龙](https://yeecord.com/)的[帖子](https://yeecord.com/blog/thats-why-i-gave-up-on-music)后才知道，原来现在的音乐机器人已经困难成这样了。
-
-又因为我其实原本就有音汐了，我就想着我如果把他关于音乐的代码专门分出来做音乐机器人，~~会不会火~~。
-
-何况现在 yt-dlp 如果一直从同一个 ip 发送请求的话，也很容易出现 403(没有权限)或者其他错误的请求。~~(这大概也是为什么音乐机器人越来越少的原因，毕竟稳定的来源确实挺难找的)~~
-
-但如果每个使用者都只是根据自己的需求去自建 discord bot，是不是就可以解决这个问题？
-
-所以说我做了这个 TuneZ。
-</details>
+### 🎵 播放列表
+- **播放列表**：意指使用 `/play` 开始播放后，再使用 `/play` or `/add` 新增歌曲，而产生的播放列表。
+  - 这个播放列表在退出频道后，就**不会再被保留**。
+- **自定义播放列表**：意指使用 `/add_custom_list` 后，所创建的**「个人」播放列表**。
+  - 这个播放列表会被**永久保存**于本地的数据库中。
 
 ---
 
@@ -42,7 +38,7 @@ TuneZ 所有可用指令的完整列表。
 
 ### /play
 
-播放音乐或將歌曲加入播放列表。
+播放音乐或将歌曲加入播放列表。
 
 | 格式 | 说明 |
 |------|------|
@@ -54,12 +50,12 @@ TuneZ 所有可用指令的完整列表。
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
-| `query` | 字串 | 歌曲名称、YouTube 网址或播放列表网址 |
+| `query` | 字符串 | 歌曲名称、YouTube 网址或播放列表网址 |
 
 **范例：**
 ```
-/play 给你满满
-/play https://www.youtube.com/watch?v=dQw4w9WgXcQ
+/play 不该
+/play https://www.youtube.com/watch?v=MDc1mjrIsPM
 ```
 
 <div class="callout callout-info">
@@ -70,7 +66,7 @@ TuneZ 所有可用指令的完整列表。
 
 ### /add
 
-將歌曲加入播放列表，但不开始播放。
+将歌曲加入播放列表，但不开始播放。
 
 | 格式 | 说明 |
 |------|------|
@@ -81,13 +77,13 @@ TuneZ 所有可用指令的完整列表。
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
-| `query` | 字串 | 歌曲名称或 YouTube 网址 |
+| `query` | 字符串 | 歌曲名称或 YouTube 网址 |
 
 ---
 
 ### /skip
 
-跳过当前的歌曲。
+跳过目前的歌曲。
 
 | 格式 | 说明 |
 |------|------|
@@ -110,7 +106,7 @@ TuneZ 所有可用指令的完整列表。
 
 ### /pause
 
-暂停当前的播放。
+暂停目前的播放。
 
 | 格式 | 说明 |
 |------|------|
@@ -152,23 +148,21 @@ TuneZ 所有可用指令的完整列表。
 | `/loop [模式]` | 设定循环模式 |
 | `$loop [模式]` | 同上 |
 
-**循环模式：**
+**参数：**
 
-| 模式 | 说明 |
-|------|------|
-| `none` | 不循环（预设）|
-| `single` | 循环当前的歌曲 |
-| `list` | 循环整个播放列表 |
+| 参数 | 类型 | 可选 | 说明 |
+|------|------|------|------|
+| `mode` | 字符串 | 是 | 循环模式：`none`、`single` 或 `list` |
 
 ---
 
 ### /nowplaying
 
-显示当前正在播放的歌曲。
+显示目前正在播放的歌曲。
 
 | 格式 | 说明 |
 |------|------|
-| `/nowplaying` | 显示当前的歌曲 |
+| `/nowplaying` | 显示目前的歌曲 |
 | `$nowplaying` | 同上 |
 | `$np` | 简写 |
 | `$now` | 简写 |
@@ -177,7 +171,7 @@ TuneZ 所有可用指令的完整列表。
 
 ### /queue
 
-显示当前的播放列表。
+显示目前的播放列表。
 
 | 格式 | 说明 |
 |------|------|
@@ -201,7 +195,13 @@ TuneZ 所有可用指令的完整列表。
 
 | 参数 | 类型 | 说明 |
 |------|------|------|
-| `number` | 整数 | 歌曲在播放清单中的位置（可用 `/queue` 查看）|
+| `number` | 整数 | 歌曲在播放列表中的位置（可用 `/queue` 查看）|
+
+**范例：**
+```
+/queue        # 查看播放列表，歌曲会被编号 1, 2, 3...
+/remove 2     # 移除第 2 首歌曲
+```
 
 ---
 
@@ -247,6 +247,13 @@ TuneZ 所有可用指令的完整列表。
 |------|------|------|
 | `volume` | 整数 | 音量等级（0-200，预设：100）|
 
+**范例：**
+```
+/volume        # 显示音量控制按钮
+/volume 50     # 设定音量为 50%
+/volume 150    # 设定音量为 150%
+```
+
 ---
 
 ## 🎛️ 互动按钮
@@ -261,14 +268,14 @@ TuneZ 所有可用指令的完整列表。
 | ⏹️ Stop | 停止并离开 |
 | 🔁 Loop | 切换循环模式 |
 | 📋 Queue | 显示播放列表 |
-| 🔄 Refresh | 刷新歌曲资讯 |
+| 🔄 Refresh | 刷新歌曲信息 |
 | 🔊 Volume | 显示音量控制 |
 
 ---
 
-## 📝 自订播放列表
+## 📝 自定义播放列表
 
-详见[自订播放列表指南](/zh-CN/custom-playlist/)。
+详见[自定义播放列表指南](/zh-CN/custom-playlist/)。
 
 | 指令 | 说明 |
 |------|------|
@@ -280,21 +287,59 @@ TuneZ 所有可用指令的完整列表。
 
 ---
 
-## 🌟 特色功能
+## 🛠️ 工具指令
 
-### 自带浅蓝色动画 emojis
+### /help
 
-TuneZ 内置精美的浅蓝色动画表情符号，让您的 Discord 体验更美观！
+显示基本帮助信息。
 
-### 可自订 emojis
+| 格式 | 说明 |
+|------|------|
+| `/help` | 显示帮助 |
 
-您可以使用自己的表情符号来替换预设的：
+---
 
-<strong>❗注意图片档案名（不含副档名）要与 `assets/emojis/` 里面的档案名一样❗</strong>
+### /emoji
 
-- 在 Windows 当中，进到 `C:\Users\USERNAME\AppData\Roaming\Easy Music Bot\data\emojis` 可以自己放图片上去
-- 在其他环境下，可在 `./data/emojis/` 中上传自订图片
-- 最后在 Discord 频道里面使用 `/reload_emojis` 来重载 emojis
+显示 TuneZ 内建的的表情符号。
+
+| 格式 | 说明 |
+|------|------|
+| `/emoji [名称]` | 依名称显示表情符号 |
+| `$emoji [名称]` | 同上 |
+
+**参数：**
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `name` | 字符串 | 表情符号名称（例如 `next`、`stop`、`refresh`）|
+
+**范例：**
+```
+/emoji next      # 显示 "next" 表情符号
+/emoji pause     # 显示 "pause" 表情符号
+```
+
+---
+
+### /reload_emojis
+
+重载表情符号资源（仅拥有者可用）。
+
+| 格式 | 说明 |
+|------|------|
+| `/reload_emojis [类型]` | 重载表情符号 |
+| `$reload_emojis [类型]` | 同上 |
+
+**参数：**
+
+| 参数 | 类型 | 说明 |
+|------|------|------|
+| `type` | 字符串 | `all`、`default` 或 `custom` |
+
+<div class="callout callout-info">
+  <strong>🔧 自订表情符号：</strong>将您的自订表情符号图片放在 <code>data/emojis/</code> 文件夹（或 Windows 上的 <code>C:\Users\USERNAME\AppData\Roaming\TuneZ_Discord_Bot\data\emojis</code>）。然后使用 <code>/reload_emojis custom</code> 来载入。
+</div>
 
 ---
 
@@ -310,7 +355,7 @@ TuneZ 内置精美的浅蓝色动画表情符号，让您的 Discord 体验更�
 | `/resume` | `$rs` | 继续 |
 | `/stop` | - | 停止并离开 |
 | `/loop` | - | 循环模式 |
-| `/nowplaying` | `$np`, `$now` | 当前的歌曲 |
+| `/nowplaying` | `$np`, `$now` | 目前的歌曲 |
 | `/queue` | `$q` | 显示播放列表 |
 | `/remove` | `$rm` | 移除歌曲 |
 | `/clear` | `$cq` | 清除播放列表 |

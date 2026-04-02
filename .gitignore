@@ -9,5 +9,7 @@ wheels/
 # Virtual environments
 .venv
 .env
+.kilo
 
-logs_62949255541/
+docs/_site/
+docs/.jekyll-cache/

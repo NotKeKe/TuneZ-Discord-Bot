@@ -148,7 +148,7 @@
                 // Path starts with language code (no baseurl or local development)
                 // e.g., /en/faq -> /zh-TW/faq
                 const afterLang = currentPath.substring(langMatch[0].length);
-                window.location.href = '/' + lang + afterLang;
+                window.location.href = '/' + lang + '/' + afterLang;
             } else {
                 // Path has a prefix (likely repository name) before language
                 // e.g., /TuneZ-Discord-Bot/en/faq -> /TuneZ-Discord-Bot/zh-TW/faq
@@ -156,7 +156,7 @@
                 const prefixMatch = currentPath.match(prefixPattern);
 
                 if (prefixMatch) {
-                    window.location.href = prefixMatch[1] + '/' + lang + '/';
+                    window.location.href = prefixMatch[1] + '/' + lang + '/' + currentPath.substring(prefixMatch[0].length);
                 } else {
                     // No language found, just go to language root
                     window.location.href = '/' + lang + '/';
