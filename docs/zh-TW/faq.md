@@ -39,11 +39,11 @@ TuneZ 是一個基於 Python 的 Discord 音樂機器人，可以讓您在 Disco
 
 ### 執行 TuneZ 需要什麼？
 
-- Discord Bot Token（可從 Discord 開發者入口網站免費取得）
+- Discord Bot Token（可從 Discord 開發者入口網站取得），具體參考[註冊 Discord Bot]({{ '/zh-TW/register-discord-bot/' | relative_url }})
 - 以下任一環境：
-  - Windows 電腦（使用 .exe 方法）
-  - 已安裝 Docker（使用 Docker 方法）
-  - Python 3.10+（使用 uv 方法）
+  - Windows 電腦（使用 .exe）
+  - 已安裝 Docker（使用 Docker）
+  - Python 3.10+（使用 uv）
 
 ### 我沒有 Discord Bot Token，要如何取得？
 
@@ -56,6 +56,8 @@ TuneZ 是一個基於 Python 的 Discord 音樂機器人，可以讓您在 Disco
    - PRESENCE INTENT
    - SERVER MEMBERS INTENT
    - MESSAGE CONTENT INTENT
+
+詳細請參閱[註冊 Discord Bot]({{ '/zh-TW/register-discord-bot/' | relative_url }})
 
 ### 為什麼需要啟用 intents？
 
@@ -195,7 +197,6 @@ Discord 要求機器人啟用特定 intents 才能存取某些功能。TuneZ 需
 ### 我可以在哪裡獲得支援？
 
 - **GitHub Issues**：[回報錯誤](https://github.com/NotKeKe/TuneZ-Discord-Bot/issues)
-- **Discord**：加入我們的社群獲取幫助
 
 ### 如何回報錯誤？
 
@@ -213,13 +214,4 @@ Discord 要求機器人啟用特定 intents 才能存取某些功能。TuneZ 需
 
 ## 📄 授權
 
-TuneZ 採用 Apache License 2.0 授權。您可以：
-- ✅ 將其用於個人或商業目的
-- ✅ 修改和自訂
-- ✅ 分發
-
-您不能：
-- ❌ 讓作者承擔責任
-- ❌ 使用該名稱進行代言
-
-詳見 [LICENSE](https://github.com/NotKeKe/TuneZ-Discord-Bot/blob/main/LICENSE)。
+見 [授權]({{ '/zh-TW/#license' | relative_url }})

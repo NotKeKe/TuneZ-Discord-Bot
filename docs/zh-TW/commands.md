@@ -15,26 +15,22 @@ breadcrumb:
 TuneZ 所有可用指令的完整列表。
 
 <div class="callout callout-info">
-  <strong>💡 說明：</strong>所有指令都可以使用斜線指令（`/`）或前綴（`$`）格式。範例中會顯示兩種格式。
+  <strong>💡 說明：</strong>
+  <ul>
+    <li>所有指令都可以使用斜線指令（`/`）或前綴（`$`）格式。範例中會顯示兩種格式。</li>
+    <li>大多數指令都有中文翻譯。</li>
+  </ul>
 </div>
 
 ---
 
-## 📖 前言
+## 📖 名詞定義
 
-<details>
-<summary><strong>為什麼要做這個？</strong></summary>
-
-前陣子有個朋友跟我要了[音汐](https://github.com/NotKeKe/Discord-Bot-YinXi)，我後來看了[YEE式機器龍](https://yeecord.com/)的[貼文](https://yeecord.com/blog/thats-why-i-gave-up-on-music)後才知道，原來現在的音樂機器人已經困難成這樣了。
-
-又因為我其實原本就有音汐了，我就想著我如果把他關於音樂的代碼專門分出來做音樂機器人，~~會不會火~~。
-
-何況現在 yt-dlp 如果一直從同一個 ip 發送請求的話，也很容易出現 403(沒有權限)或者其他錯誤的請求。~~(這大概也是為什麼音樂機器人越來越少的原因，畢竟穩定的來源確實滿難找的)~~
-
-但如果每個使用者都只是根據自己的需求去自架 discord bot，是不是就可以解決這個問題？
-
-所以說我就做了這個 TuneZ。
-</details>
+### 🎵 播放清單
+- **播放清單**：意指使用 `/play` 開始播放後，再使用 `/play` or `/add` 新增歌曲，而產生的播放清單。
+  - 這個播放清單在退出頻道後，就**不會再被保留**。
+- **自訂播放清單**：意指使用 `/add_custom_list` 後，所創建的**「個人」播放清單**。
+  - 這個播放清單會被**永久保存**於本地的資料庫中。
 
 ---
 
@@ -58,8 +54,8 @@ TuneZ 所有可用指令的完整列表。
 
 **範例：**
 ```
-/play 給你默默
-/play https://www.youtube.com/watch?v=dQw4w9WgXcQ
+/play 不該
+/play https://www.youtube.com/watch?v=MDc1mjrIsPM
 ```
 
 <div class="callout callout-info">
@@ -154,9 +150,9 @@ TuneZ 所有可用指令的完整列表。
 
 **參數：**
 
-| 參數 | 類型 | 說明 |
-|------|------|------|
-| `mode` | 字串 | 循環模式：`none`、`single` 或 `list` |
+| 參數 | 類型 | 可選 | 說明 |
+|------|------|------|------|
+| `mode` | 字串 | 是 | 循環模式：`none`、`single` 或 `list` |
 
 ---
 
@@ -342,28 +338,8 @@ TuneZ 所有可用指令的完整列表。
 | `type` | 字串 | `all`、`default` 或 `custom` |
 
 <div class="callout callout-info">
-  <strong>🔧 自訂表情符號：</strong>將您的自訂表情符號圖片放在 `data/emojis/` 資料夾（或 Windows 上的 `C:\Users\USERNAME\AppData\Roaming\Easy Music Bot\data\emojis`）。然後使用 `/reload_emojis custom` 來載入。
+  <strong>🔧 自訂表情符號：</strong>將您的自訂表情符號圖片放在 <code>data/emojis/</code> 資料夾（或 Windows 上的 <code>C:\Users\USERNAME\AppData\Roaming\TuneZ_Discord_Bot\data\emojis</code>）。然後使用 <code>/reload_emojis custom</code> 來載入。
 </div>
-
----
-
-## 🌟 特色功能
-
-### 自帶淺藍色動畫 emojis
-
-TuneZ 內建精美的淺藍色動畫表情符號，讓您的 Discord 體驗更美觀！
-
-### 可自訂 emojis
-
-您可以使用自己的表情符號來替換預設的：
-
-<strong>❗注意圖片檔名（不含副檔名）要與 `assets/emojis/` 裡面的檔名一樣❗</strong>
-
-**範例：** `list.gif` → `list.png`
-
-- 在 Windows 當中，進到 `C:\Users\USERNAME\AppData\Roaming\Easy Music Bot\data\emojis` 可以自己放圖片上去
-- 在其他環境下，可在 `./data/emojis/` 中上傳自訂圖片
-- 最後在 Discord 頻道裡面使用 `/reload_emojis` 來重載 emojis
 
 ---
 

@@ -5,7 +5,7 @@ import shutil
 import os
 import platform
 
-MY_APP_NAME = "Easy Music Bot"
+MY_APP_NAME = "TuneZ_Discord_Bot"
 
 def get_app_data_path() -> Path:
     """取得一個跨平台的使用者應用程式資料儲存路徑"""

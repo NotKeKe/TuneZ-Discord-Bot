@@ -24,10 +24,10 @@ breadcrumb:
 
 在安裝 TuneZ 之前，請確認您有以下條件：
 
-1. **Discord Bot Token** - 在 [Discord 開發者入口網站](https://discord.com/developers/applications) 建立機器人應用程式
-2. **Python 3.10+**（使用 uv 方法）
-3. **Docker 和 Docker Compose**（使用 Docker 方法）
-4. **FFmpeg**（Windows exe 和 Docker 方法通常已包含）
+1. **Discord Bot Token** - 在 [Discord 開發者入口網站](https://discord.com/developers/applications) 建立機器人
+2. **Python 3.10+**（使用 uv）
+3. **Docker 和 Docker Compose**（使用 Docker）
+4. **FFmpeg**（Windows exe 和 Docker 通常已包含）
 
 ---
 
@@ -45,13 +45,13 @@ breadcrumb:
 
 2. **執行安裝檔**
 
-   雙擊 `windows.exe` 執行。它會自動解壓縮必要的資源。
+   雙擊 `windows.exe` 執行。它會於下一步的目錄中，放入必要的資源。
 
 3. **設定機器人**
 
    導航到 Roaming 目錄：
    ```
-   C:\Users\您的使用者名稱\AppData\Roaming\Easy Music Bot
+   C:\Users\您的使用者名稱\AppData\Roaming\TuneZ_Discord_Bot
    ```
 
 4. **編輯 `.env` 檔案**
@@ -74,6 +74,8 @@ breadcrumb:
 6. **測試一下**
 
    加入語音頻道並使用 `/play` 開始播放音樂！
+   <br>
+   或者使用 `/help` 來取得指令幫助！
 
 ---
 
@@ -118,7 +120,7 @@ breadcrumb:
    docker compose up -d
    ```
 
-6. **查看日誌**
+6. **查看日誌 (可選)**
 
    ```bash
    docker compose logs -f
@@ -157,6 +159,11 @@ breadcrumb:
    curl -LsSf https://astral.sh/uv/install.sh | sh
    ```
 
+   或查看 uv 官方的[安裝教學](https://docs.astral.sh/uv/getting-started/installation/)：
+   ```
+   https://docs.astral.sh/uv/getting-started/installation/
+   ```
+
 2. **克隆專案**
 
    ```bash
@@ -191,59 +198,6 @@ breadcrumb:
 
 ---
 
-## 🔧 創建 Discord Bot
-
-如果您還沒有 Discord Bot，請按照以下步驟建立：
-
-### 1. 建立新應用程式
-
-1. 前往 [Discord 開發者入口網站](https://discord.com/developers/applications)
-2. 點擊 **"New Application"**
-3. 為您的應用程式命名（例如 "TuneZ"）
-4. 點擊 **"Create"**
-
-### 2. 建立機器人
-
-1. 在左側邊欄點擊 **"Bot"**
-2. 點擊 **"Add Bot"**
-3. 點擊 **"Yes, do it!"**
-
-### 3. 取得您的 Token
-
-1. 在 **Token** 區塊下，點擊 **"Reset Token"**
-2. 複製並保存您的 token（您將無法再次查看！）
-
-<div class="callout callout-danger">
-  <strong>🔒 重要：</strong>千萬不要分享您的機器人 token！如果有人取得它，他們可以控制您的機器人。
-</div>
-
-### 4. 啟用必要的 Intents
-
-1. 向下滾動到 **Privileged Gateway Intents** 區塊
-2. 啟用以下選項：
-   - ✅ **PRESENCE INTENT**
-   - ✅ **SERVER MEMBERS INTENT**
-   - ✅ **MESSAGE CONTENT INTENT**
-
-### 5. 產生邀請連結
-
-1. 前往 **OAuth2 > URL Generator**
-2. 選擇以下 scopes：
-   - ✅ `bot`
-   - ✅ `applications.commands`
-3. 選擇機器人權限：
-   - ✅ 發送訊息
-   - ✅ 讀取訊息歷史
-   - ✅ 連接（至語音頻道）
-   - ✅ 說話（在語音頻道中）
-   - ✅ 使用斜線指令
-
-4. 複製產生的 URL 並在瀏覽器中開啟
-
-5. 選擇您想要添加機器人的伺服器
-
----
-
 ## ⚙️ 設定
 
 ### 環境變數
@@ -252,34 +206,6 @@ breadcrumb:
 |------|------|------|
 | `DISCORD_TOKEN` | 是 | 您的 Discord 機器人 token |
 | `OWNER_ID` | 否 | 您的 Discord 使用者 ID（用於擁有者專屬指令）|
-
-### 資料儲存
-
-執行機器人後，會建立 `data/` 資料夾，包含：
-
-- `custom_lists/` - 自訂播放清單儲存
-- `url_cache/` - YouTube URL 快取
-
----
-
-## 🐛 疑難排解
-
-### 機器人無法啟動？
-
-1. 檢查您的 `DISCORD_TOKEN` 是否正確
-2. 確認您已啟用所有必要的 intents
-3. 查看日誌中的錯誤訊息
-
-### 語音連接問題？
-
-1. 確認機器人有連接和說話的權限
-2. 檢查 FFmpeg 是否已安裝（音訊播放所需）
-
-### 音樂無法播放？
-
-1. 確認您在語音頻道中
-2. 檢查 YouTube URL 是否可存取
-3. 嘗試使用不同的關鍵字（歌曲名稱而非 URL）
 
 ---
 

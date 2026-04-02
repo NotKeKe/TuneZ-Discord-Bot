@@ -29,6 +29,56 @@ permalink: /zh-TW/
 
 ---
 
+## 📖 前言
+<details>
+    <summary>為什麼要做這個?</summary>
+    <ul>
+        <li>
+            前陣子有個朋友跟我要了<a href="https://github.com/NotKeKe/Discord-Bot-YinXi">音汐</a>，我後來看了<a href="https://yeecord.com/">YEE式機器龍</a>的<a href="https://yeecord.com/blog/thats-why-i-gave-up-on-music">貼文</a>後才知道，原來現在的音樂機器人已經困難成這樣了
+        </li>
+        <li>
+            又因為我其實原本就有音汐了，我就想著 我如果把他關於音樂的代碼專門分出來 做音樂機器人，<del>會不會火</del>
+        </li>
+        <li>
+            何況現在 yt-dlp 如果一直從同一個 ip 發送請求的話，也很容易出現 403(沒有權限)或者其他錯誤的請求 <del>(這大概也是為什麼音樂機器人越來越少的原因，畢竟穩定的來源確實滿難找的)</del><br>
+            但如果每個使用者都只是根據自己的需求 去自架 discord bot，是不是就可以解決這個問題
+        </li>
+        <li>
+            所以說我就做了這個 TuneZ
+        </li>
+    </ul>
+</details>
+<details>
+    <summary>為什麼叫 TuneZ</summary>
+    <ul>
+        <li>
+            其實原因超簡單
+        </li>
+        <li>
+            我先隨便讓Copilot幫我想個名字，出現了 Tune。 <br>
+            後來想想，大約2000年左右的人都會被稱作 Z 世代 <br>
+            所以又出現了 Z <br>
+            節合起來就變成 <strong>TuneZ</strong> 了
+        </li>
+    </ul>
+</details>
+<details>
+    <summary>會不會有風險?</summary>
+    <ul>
+        <li>
+            答案其實也很簡單 自己使用就不會有
+        </li>
+        <li>
+            這種東西通常自己 或者讓朋友用一下都不會出啥事
+        </li>
+        <li>
+            除非你選擇把他拿去營利 <br>
+            那就不能怪我了:) <br>
+            我沒考慮負責
+        </li>
+    </ul>
+</details>
+
 ## ✨ 特色
 
 <div class="feature-grid">
@@ -42,6 +92,12 @@ permalink: /zh-TW/
     <div class="feature-icon">📋</div>
     <h3>播放清單管理</h3>
     <p>完整控制播放清單，包括新增、移除、跳過、清空等功能。</p>
+  </div>
+
+  <div class="feature-card">
+    <div class="feature-icon">📋</div>
+    <h3>自訂播放清單</h3>
+    <p>可以自己透過單一 YouTube 連結，自訂名稱並創建專屬播放清單。</p>
   </div>
   
   <div class="feature-card">
@@ -79,7 +135,7 @@ permalink: /zh-TW/
 
 [![邀請機器人](https://img.shields.io/badge/邀請-音汐-5865F2?style=for-the-badge)](https://discord.com/oauth2/authorize?client_id=990798785489825813)
 
-### 方法二：自架機器人
+### 方法二：自架機器人 (推薦)
 
 想要更多控制權和功能？自己架設 TuneZ：
 
@@ -118,6 +174,7 @@ permalink: /zh-TW/
 
 ## 📚 文件
 
+- [創建 Discord Bot]({{ '/zh-TW/register-discord-bot/' | relative_url }}) - 如何創建一個 Discord Bot
 - [安裝指南]({{ '/zh-TW/installation/' | relative_url }}) - 如何設定 TuneZ
 - [指令列表]({{ '/zh-TW/commands/' | relative_url }}) - 所有指令的完整列表
 - [自訂播放清單]({{ '/zh-TW/custom-playlist/' | relative_url }}) - 建立和管理播放清單
@@ -128,13 +185,28 @@ permalink: /zh-TW/
 ## 💬 支援
 
 - **GitHub Issues**：[回報錯誤或請求功能](https://github.com/NotKeKe/TuneZ-Discord-Bot/issues)
-- **Discord**：加入我們的社群獲取幫助
+  - 無論是程式大佬、技術小白，遇到任何問題，或是希望可以新增功能，都可以來這裡提交 Issue
 
 ---
 
+<div id=license></div>
+
 ## 📄 授權
 
-本專案採用 Apache License 2.0 授權 - 詳見 [LICENSE](https://github.com/NotKeKe/TuneZ-Discord-Bot/blob/main/LICENSE) 檔案。
+TuneZ 採用 Apache License 2.0 授權。您可以：
+- ✅ 將專案代碼用於個人或商業目的
+- ✅ 修改和自訂
+- ✅ 分發
+
+您不能：
+- ❌ 讓作者承擔責任
+- ❌ 使用該名稱進行代言
+
+詳見 [LICENSE](https://github.com/NotKeKe/TuneZ-Discord-Bot/blob/main/LICENSE)。
+
+<div class="callout callout-danger">
+  <strong>❗ 本專案作者不受理或承擔任何使用者因使用該專案，而造成的法律後果或侵權行為。</strong>
+</div>
 
 ---
 
