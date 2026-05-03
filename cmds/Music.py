@@ -27,6 +27,9 @@ if not discord.opus.is_loaded() and platform.system() == 'Windows':
     elif platform.architecture()[0] == '32bit':
         discord.opus.load_opus(resource_path('assets/opus/opus_x86.dll'))
 
+if not discord.opus.is_loaded() and platform.system() == 'Linux':
+        discord.opus.load_opus('libopus.so.0')
+    
 if not discord.opus.is_loaded():
     raise discord.opus.OpusNotLoaded('Opus is not loaded, please install opus.')
 

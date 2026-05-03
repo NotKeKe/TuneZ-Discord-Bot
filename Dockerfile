@@ -7,11 +7,15 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Taipei /etc/localtime \
 # 安裝 uv
 RUN pip install uv --no-cache-dir
 
-# 安裝 ffmpeg, opus 依賴
-RUN apk add --no-cache ffmpeg libsodium libsodium-dev opus opus-dev build-base
+# 安裝其他依賴
+RUN apk add --no-cache ffmpeg libsodium opus deno
 
 WORKDIR /app
 
+COPY pyproject.toml uv.lock .python-version ./
+
+RUN uv sync --frozen --no-install-project
+
 COPY . .
 
-RUN uv sync
+CMD ["uv", "run", "main.py"]

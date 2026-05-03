@@ -14,5 +14,7 @@ wheels/
 assets/opus
 assets/ffmpeg
 assets/docs
-docs
-tests
+docs/
+tests/
+data/
+logs/

@@ -13,3 +13,5 @@ wheels/
 
 docs/_site/
 docs/.jekyll-cache/
+data/
+logs/

@@ -4,7 +4,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    command: uv run main.py
     container_name: TuneZ
     env_file: .env
     volumes:
